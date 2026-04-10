@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <title>Dashboard — vividConsulting.INFO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .panel-card { @apply bg-navy-800 border border-navy-700 rounded-xl overflow-hidden; }
+    .dropdown-menu { display: none; }
+    .dropdown-open .dropdown-menu { display: block; }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex-shrink-0">
+          <img src="images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Home</a>
+          <a href="templates/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Template Library</a>
+          <a href="pages/contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+        </nav>
+
+        <!-- User avatar dropdown -->
+        <div id="user-nav" class="relative">
+          <!-- Loading state -->
+          <div id="user-nav-loading" class="w-8 h-8 rounded-full bg-navy-700 animate-pulse"></div>
+
+          <!-- Populated by JS -->
+          <div id="user-nav-loaded" class="hidden">
+            <button id="user-avatar-btn" class="flex items-center gap-2 focus:outline-none" onclick="document.getElementById('user-dropdown').classList.toggle('dropdown-open')">
+              <img id="user-avatar" src="" alt="" class="w-8 h-8 rounded-full border-2 border-navy-700 object-cover">
+              <span id="user-name" class="hidden lg:block text-sm font-medium text-steel-300"></span>
+              <svg class="hidden lg:block w-4 h-4 text-steel-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+
+            <div id="user-dropdown" class="">
+              <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-white border border-navy-700 rounded-lg shadow-xl py-2 z-50">
+                <div class="px-4 py-2 border-b border-navy-700">
+                  <p id="dropdown-name" class="text-sm font-medium text-steel-100"></p>
+                  <p id="dropdown-email" class="text-xs text-steel-500 truncate"></p>
+                  <span id="dropdown-tier" class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide"></span>
+                </div>
+                <a href="dashboard.html" class="block px-4 py-2.5 text-sm text-steel-300 hover:text-steel-100 hover:bg-navy-700 transition-colors">Dashboard</a>
+                <!-- <a href="settings.html" class="block px-4 py-2.5 text-sm text-steel-300 hover:text-steel-100 hover:bg-navy-700 transition-colors">Settings</a> -->
+                <div class="border-t border-navy-700 mt-1 pt-1">
+                  <a href="api/logout.php" class="block px-4 py-2.5 text-sm text-red-500 hover:text-red-600 hover:bg-navy-700 transition-colors">Sign Out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="flex-1 pt-24 lg:pt-28 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Welcome bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-2xl font-bold text-steel-100" id="welcome-heading">Dashboard</h1>
+          <p class="text-sm text-steel-400 mt-1" id="welcome-sub">Manage your templates and subscription.</p>
+        </div>
+        <!-- Upgrade banner (shown for free tier only) -->
+        <div id="upgrade-banner" class="hidden">
+          <a id="upgrade-link-monthly" href="#" class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            Upgrade to Consultant
+          </a>
+        </div>
+      </div>
+
+      <!-- Success/cancel messages from Stripe redirect -->
+      <div id="subscription-msg" class="hidden mb-6 px-4 py-3 rounded-lg text-sm"></div>
+
+      <!-- ── Dashboard panels (extensible grid) ────────────── -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="dashboard-panels">
+
+        <!-- Panel: Template Library -->
+        <div class="panel-card flex flex-col" data-panel="templates">
+          <div class="px-5 py-4 border-b border-navy-700 flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-steel-100">Template Library</h2>
+            <span id="template-count" class="text-xs text-steel-500"></span>
+          </div>
+          <div id="template-list" class="flex-1 overflow-y-auto p-4 space-y-3" style="max-height: 560px;">
+            <!-- Loading skeleton -->
+            <div class="animate-pulse space-y-3" id="template-skeleton">
+              <div class="h-16 bg-navy-700 rounded-lg"></div>
+              <div class="h-16 bg-navy-700 rounded-lg"></div>
+              <div class="h-16 bg-navy-700 rounded-lg"></div>
+              <div class="h-16 bg-navy-700 rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel: Chat (placeholder) -->
+        <div class="panel-card flex flex-col" data-panel="chat">
+          <div class="px-5 py-4 border-b border-navy-700">
+            <h2 class="text-lg font-semibold text-steel-100">Chat</h2>
+          </div>
+          <div class="flex-1 flex items-center justify-center p-8" style="min-height: 300px;">
+            <div class="text-center">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 mb-4">
+                <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              </div>
+              <p class="text-steel-400 font-medium">Chat coming soon.</p>
+              <p class="text-xs text-steel-500 mt-1">Direct messaging with our consultants will be available here.</p>
+            </div>
+          </div>
+        </div>
+
+        <!--
+          To add more panels, copy the pattern above:
+          <div class="panel-card flex flex-col" data-panel="unique-name">
+            <div class="px-5 py-4 border-b border-navy-700">
+              <h2 class="text-lg font-semibold text-steel-100">Panel Title</h2>
+            </div>
+            <div class="flex-1 p-4">
+              Panel content here
+            </div>
+          </div>
+        -->
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-navy-700 py-6 text-center text-xs text-steel-500">
+    &copy; 2026 SKrishnan Media Enterprises Inc, DBA vividConsulting.INFO. All rights reserved.
+  </footer>
+
+  <script>
+    // ── State ──────────────────────────────────────────────────
+    let currentUser = null;
+    let csrfToken   = '';
+
+    // ── Auth check — redirect if not logged in ────────────────
+    async function initDashboard() {
+      try {
+        const res = await fetch('api/user.php', { credentials: 'same-origin' });
+        if (!res.ok) {
+          window.location.href = 'login.html';
+          return;
+        }
+        currentUser = await res.json();
+        renderUserNav(currentUser);
+        renderWelcome(currentUser);
+        loadTemplates();
+        handleSubscriptionMessages();
+      } catch (e) {
+        window.location.href = 'login.html';
+      }
+    }
+
+    // ── Render user nav ───────────────────────────────────────
+    function renderUserNav(user) {
+      document.getElementById('user-nav-loading').classList.add('hidden');
+      document.getElementById('user-nav-loaded').classList.remove('hidden');
+
+      const avatar = document.getElementById('user-avatar');
+      if (user.avatar_url) {
+        avatar.src = user.avatar_url;
+        avatar.alt = user.display_name || 'User';
+      } else {
+        // Fallback: initials
+        avatar.src = 'data:image/svg+xml,' + encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect fill="%2300b1ba" width="32" height="32" rx="16"/><text x="16" y="20" text-anchor="middle" fill="white" font-size="14" font-family="Inter,sans-serif">' +
+          (user.given_name || 'U').charAt(0).toUpperCase() + '</text></svg>'
+        );
+      }
+
+      document.getElementById('user-name').textContent = user.given_name || user.display_name || 'Account';
+      document.getElementById('dropdown-name').textContent = user.display_name || user.email;
+      document.getElementById('dropdown-email').textContent = user.email;
+
+      const tierBadge = document.getElementById('dropdown-tier');
+      tierBadge.textContent = user.subscription_tier;
+      if (user.subscription_tier === 'consultant') {
+        tierBadge.className = 'inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-accent/10 text-accent';
+      } else if (user.subscription_tier === 'enterprise') {
+        tierBadge.className = 'inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-purple-100 text-purple-700';
+      } else {
+        tierBadge.className = 'inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-navy-700 text-steel-400';
+      }
+    }
+
+    // ── Welcome bar ───────────────────────────────────────────
+    function renderWelcome(user) {
+      const name = user.given_name || user.display_name || '';
+      document.getElementById('welcome-heading').textContent = name ? 'Welcome back, ' + name : 'Dashboard';
+
+      if (user.subscription_tier === 'free') {
+        document.getElementById('upgrade-banner').classList.remove('hidden');
+        // Build upgrade URL with CSRF token
+        document.getElementById('upgrade-link-monthly').href = 'stripe-checkout.php?plan=monthly&csrf=' + encodeURIComponent(csrfToken);
+      }
+    }
+
+    // ── Template list ─────────────────────────────────────────
+    async function loadTemplates() {
+      try {
+        const res = await fetch('api/templates.php', { credentials: 'same-origin' });
+        if (!res.ok) return;
+        const data = await res.json();
+
+        const container = document.getElementById('template-list');
+        container.innerHTML = '';
+
+        document.getElementById('template-count').textContent = data.templates.length + ' templates';
+
+        data.templates.forEach(tpl => {
+          const item = document.createElement('div');
+          const accessible = tpl.accessible;
+
+          item.className = 'flex items-start gap-3 p-3 rounded-lg border transition-colors ' +
+            (accessible
+              ? 'border-navy-700 hover:border-accent/40 cursor-pointer bg-navy-900'
+              : 'border-navy-700 bg-navy-900/50 opacity-60');
+
+          const tierColor = tpl.tier === 'free'
+            ? 'bg-green-100 text-green-700'
+            : 'bg-accent/10 text-accent';
+
+          item.innerHTML = `
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-navy-700 flex items-center justify-center mt-0.5">
+              <span class="text-xs font-bold text-steel-400">${tpl.format}</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-medium text-steel-200 truncate">${escapeHtml(tpl.name)}</p>
+              </div>
+              <p class="text-xs text-steel-500 mt-0.5">${escapeHtml(tpl.category)}</p>
+              <div class="flex items-center gap-2 mt-1.5">
+                <span class="inline-block px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase ${tierColor}">${tpl.tier}</span>
+                ${!accessible ? '<a href="stripe-checkout.php?plan=monthly&csrf=' + encodeURIComponent(csrfToken) + '" class="text-[10px] text-accent hover:text-accent-light font-medium">Upgrade to access</a>' : ''}
+              </div>
+            </div>
+          `;
+          container.appendChild(item);
+        });
+
+      } catch (e) {
+        console.error('Failed to load templates:', e);
+      }
+    }
+
+    // ── Subscription redirect messages ────────────────────────
+    function handleSubscriptionMessages() {
+      const params = new URLSearchParams(window.location.search);
+      const msgEl = document.getElementById('subscription-msg');
+
+      if (params.get('subscription') === 'success') {
+        msgEl.classList.remove('hidden');
+        msgEl.className += ' bg-green-50 border border-green-200 text-green-700';
+        msgEl.textContent = 'Subscription activated! You now have full access to the template library.';
+        // Clean URL
+        history.replaceState(null, '', 'dashboard.html');
+      } else if (params.get('subscription') === 'cancelled') {
+        msgEl.classList.remove('hidden');
+        msgEl.className += ' bg-yellow-50 border border-yellow-200 text-yellow-700';
+        msgEl.textContent = 'Checkout was cancelled. You can upgrade at any time.';
+        history.replaceState(null, '', 'dashboard.html');
+      } else if (params.get('subscription') === 'error') {
+        msgEl.classList.remove('hidden');
+        msgEl.className += ' bg-red-50 border border-red-200 text-red-700';
+        msgEl.textContent = 'Something went wrong with the checkout. Please try again or contact us.';
+        history.replaceState(null, '', 'dashboard.html');
+      }
+    }
+
+    // ── Helpers ────────────────────────────────────────────────
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('user-dropdown');
+      const btn = document.getElementById('user-avatar-btn');
+      if (dropdown && btn && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('dropdown-open');
+      }
+    });
+
+    // ── Fetch CSRF token then init ────────────────────────────
+    // The CSRF token is generated server-side; we fetch it via a tiny endpoint.
+    // For simplicity we embed it from the user API response or generate client-side.
+    // In this implementation the CSRF is managed via PHP sessions for stripe-checkout.
+    // We'll pass an empty string for now; stripe-checkout.php validates via session.
+    initDashboard();
+  </script>
+</body>
+</html>

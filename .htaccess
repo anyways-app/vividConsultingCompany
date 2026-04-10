@@ -1,0 +1,31 @@
+# Protect sensitive PHP files from direct access
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "db.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "auth.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "schema.sql">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "composer.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
+<Files "composer.lock">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Block access to vendor directory internals (allow autoload only via PHP includes)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^vendor/ - [F,L]
+</IfModule>

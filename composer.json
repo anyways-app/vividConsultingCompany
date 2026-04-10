@@ -1,0 +1,11 @@
+{
+    "name": "vividconsulting/website",
+    "description": "vividConsulting.info backend dependencies",
+    "require": {
+        "php": ">=8.0",
+        "stripe/stripe-php": "^13.0"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
