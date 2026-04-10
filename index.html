@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <title>vividConsulting.INFO — SAP Security, GRC & Identity Management Consulting</title>
+  <meta name="description" content="Enterprise SAP GRC, SailPoint IIQ Identity Management, and SAP Integration consulting. Subscription-based templates for SAP security professionals.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b1ba; }
+
+    /* Gradient text utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #00b1ba 0%, #33c4cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subtle grid background */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,177,186,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,177,186,0.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* Nav dropdown */
+    /* Dropdown: use padding-top on dropdown to bridge the gap */
+    .nav-dropdown { display: none; padding-top: 0; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .nav-parent .nav-dropdown { top: 100%; padding-top: 8px; }
+    .nav-parent .nav-dropdown > :first-child { margin-top: 0; }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Form input styling */
+    .form-input {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #00b1ba;
+      box-shadow: 0 0 0 3px rgba(0, 177, 186, 0.1);
+      background: #ffffff;
+    }
+    .form-input::placeholder {
+      color: #94a3b8;
+    }
+
+    /* Persona tabs */
+    .persona-tab { transition: all 0.2s ease; }
+    .persona-tab.active { background: #ffffff; border-color: #00b1ba; color: #1e293b; }
+    .persona-panel { display: none; }
+    .persona-panel.active { display: block; }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex-shrink-0">
+          <img src="images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-slate-900 hover:text-accent transition-colors">Home</a>
+
+          <!-- Services Dropdown -->
+          <div class="nav-parent relative">
+            <button class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-slate-900 transition-colors flex items-center gap-1">
+              Services
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 w-72 bg-white border border-navy-700 rounded-lg shadow-xl py-2">
+              <a href="pages/sap-grc.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP GRC Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Implementation, upgrades & compliance</span>
+              </a>
+              <a href="pages/sailpoint-iiq.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SailPoint IIQ</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Identity governance & access management</span>
+              </a>
+              <a href="pages/sap-integration.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP Integration Services</span>
+                <span class="block text-xs text-steel-400 mt-0.5">System integration & data migration</span>
+              </a>
+              <a href="pages/security-consulting.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Security Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Role design, SoD & authorization architecture</span>
+              </a>
+              <a href="pages/aerospace-defense.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Aerospace & Defense</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Cleared SAP & ICAM work for federal agencies</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="templates/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Template Library</a>
+          <a href="pages/about.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">About</a>
+          <a href="blog/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Blog</a>
+          <a href="pages/contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+          <a href="pages/help.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Help</a>
+
+          <a href="templates/index.html" class="ml-4 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors">
+            Subscribe
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="lg:hidden p-2 text-steel-400 hover:text-slate-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+      <nav class="space-y-1">
+        <a href="index.html" class="block px-4 py-3 text-slate-900 font-medium rounded-lg bg-navy-700">Home</a>
+        <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
+        <a href="pages/sap-grc.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP GRC Consulting</a>
+        <a href="pages/sailpoint-iiq.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SailPoint IIQ</a>
+        <a href="pages/sap-integration.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP Integration Services</a>
+        <a href="pages/security-consulting.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Security Consulting</a>
+        <a href="pages/aerospace-defense.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Aerospace & Defense</a>
+        <div class="border-t border-navy-700 my-3"></div>
+        <a href="templates/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Template Library</a>
+        <a href="pages/about.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">About</a>
+        <a href="blog/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Blog</a>
+        <a href="pages/contact.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Contact</a>
+        <a href="pages/help.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Help</a>
+        <div class="pt-3">
+          <a href="templates/index.html" class="block text-center px-5 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors">Subscribe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO + ASK US ANYTHING (combined) ========== -->
+  <section class="relative pt-24 lg:pt-28 pb-16 lg:pb-20 bg-grid overflow-hidden" id="ask">
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+        <!-- LEFT: headline + trust signals -->
+        <div class="pt-4 lg:pt-8">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+            SAP Security, <span class="text-gradient">GRC & Identity</span> Consulting
+          </h1>
+          <p class="mt-4 text-base lg:text-lg text-steel-400 leading-relaxed">
+            15+ years helping enterprises and consultants with SAP GRC, SailPoint IIQ, security architecture, and compliance. Tell us what you're dealing with — we'll respond within one business day.
+          </p>
+
+          <!-- Trust indicators -->
+          <div class="mt-8 grid grid-cols-2 gap-3">
+            <div class="flex items-center gap-2 text-sm text-steel-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              SAP Certified
+            </div>
+            <div class="flex items-center gap-2 text-sm text-steel-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              SOX &amp; GRC Compliance
+            </div>
+            <div class="flex items-center gap-2 text-sm text-steel-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              SailPoint IIQ Specialists
+            </div>
+            <div class="flex items-center gap-2 text-sm text-steel-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              Active Security Clearance
+            </div>
+            <div class="flex items-center gap-2 text-sm text-steel-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              All Major Industries
+            </div>
+            <div class="flex items-center gap-2 text-sm text-steel-400">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              100% Audit Pass Rate
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <a href="templates/index.html" class="inline-flex items-center px-6 py-3 border border-navy-600 hover:border-accent text-steel-300 hover:text-accent text-sm font-semibold rounded-lg transition-colors">
+              Or browse the Template Library
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: compact form -->
+        <div>
+          <!-- Persona tabs -->
+          <div class="flex gap-2 mb-4">
+            <button onclick="switchPersona('enterprise')" id="hp-tab-enterprise" class="persona-tab active flex-1 px-3 py-2.5 rounded-lg border border-navy-700 text-left cursor-pointer">
+              <span class="block text-sm font-semibold text-slate-900">In-house team</span>
+              <span class="block text-xs text-steel-500 mt-0.5">Need guidance or validation</span>
+            </button>
+            <button onclick="switchPersona('consultant')" id="hp-tab-consultant" class="persona-tab flex-1 px-3 py-2.5 rounded-lg border border-navy-700 text-left cursor-pointer">
+              <span class="block text-sm font-semibold text-slate-900">Independent consultant</span>
+              <span class="block text-xs text-steel-500 mt-0.5">Need bandwidth or expertise</span>
+            </button>
+          </div>
+
+          <!-- Enterprise Panel -->
+          <div id="hp-panel-enterprise" class="persona-panel active">
+            <div class="bg-navy-800 border border-navy-700 rounded-xl p-5">
+              <form action="#" method="post" class="space-y-4">
+                <input type="hidden" name="persona" value="enterprise">
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label for="hp-ent-name" class="block text-xs font-medium text-steel-400 mb-1">Name</label>
+                    <input type="text" id="hp-ent-name" name="name" required placeholder="Jamie Lawson"
+                      class="form-input w-full px-3 py-2 rounded-lg text-sm">
+                  </div>
+                  <div>
+                    <label for="hp-ent-email" class="block text-xs font-medium text-steel-400 mb-1">Work email</label>
+                    <input type="email" id="hp-ent-email" name="email" required placeholder="jlawson@company.com"
+                      class="form-input w-full px-3 py-2 rounded-lg text-sm">
+                  </div>
+                </div>
+                <div>
+                  <label for="hp-ent-message" class="block text-xs font-medium text-steel-400 mb-1">What's going on?</label>
+                  <textarea id="hp-ent-message" name="message" rows="4" required
+                    placeholder="Describe your situation in plain language, e.g. 'We upgraded to S/4HANA but kept the old ECC security model. Our auditors are flagging SoD conflicts that didn't exist before. We need someone to review the ruleset before Q3.'"
+                    class="form-input w-full px-3 py-2 rounded-lg text-sm resize-y"></textarea>
+                </div>
+                <div class="flex items-center justify-between gap-3">
+                  <button type="submit" class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
+                    Send It Over
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                  </button>
+                  <span class="text-xs text-steel-500">Reply within 1 business day</span>
+                </div>
+              </form>
+              <p class="mt-3 text-xs text-steel-500 text-center"><a href="pages/help.html" class="text-accent hover:text-accent-light transition-colors">See more examples &amp; full form &rarr;</a></p>
+            </div>
+          </div>
+
+          <!-- Consultant Panel -->
+          <div id="hp-panel-consultant" class="persona-panel">
+            <div class="bg-navy-800 border border-navy-700 rounded-xl p-5">
+              <form action="#" method="post" class="space-y-4">
+                <input type="hidden" name="persona" value="consultant">
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label for="hp-con-name" class="block text-xs font-medium text-steel-400 mb-1">Name</label>
+                    <input type="text" id="hp-con-name" name="name" required placeholder="Morgan Chen"
+                      class="form-input w-full px-3 py-2 rounded-lg text-sm">
+                  </div>
+                  <div>
+                    <label for="hp-con-email" class="block text-xs font-medium text-steel-400 mb-1">Email</label>
+                    <input type="email" id="hp-con-email" name="email" required placeholder="morgan@firmname.com"
+                      class="form-input w-full px-3 py-2 rounded-lg text-sm">
+                  </div>
+                </div>
+                <div>
+                  <label for="hp-con-message" class="block text-xs font-medium text-steel-400 mb-1">What are you dealing with?</label>
+                  <textarea id="hp-con-message" name="message" rows="4" required
+                    placeholder="Give us the context, e.g. 'I'm on a GRC 12 implementation but the client also needs the SailPoint-to-SAP connector configured — not my area. I need someone who can own that piece. Timeline is 8 weeks starting next month.'"
+                    class="form-input w-full px-3 py-2 rounded-lg text-sm resize-y"></textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-steel-400 mb-1.5">How urgent?</label>
+                  <div class="flex flex-wrap gap-2">
+                    <label class="cursor-pointer">
+                      <input type="radio" name="hp-urgency" value="exploring" class="sr-only peer">
+                      <span class="inline-block px-3 py-1.5 rounded-md border border-navy-600 text-xs text-steel-400 peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">Exploring</span>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="hp-urgency" value="this-month" class="sr-only peer" checked>
+                      <span class="inline-block px-3 py-1.5 rounded-md border border-navy-600 text-xs text-steel-400 peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">This month</span>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="hp-urgency" value="this-week" class="sr-only peer">
+                      <span class="inline-block px-3 py-1.5 rounded-md border border-navy-600 text-xs text-steel-400 peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">This week</span>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="hp-urgency" value="asap" class="sr-only peer">
+                      <span class="inline-block px-3 py-1.5 rounded-md border border-accent text-xs text-accent peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">ASAP</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between gap-3">
+                  <button type="submit" class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
+                    Send It Over
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                  </button>
+                  <span class="text-xs text-steel-500">Reply within 1 business day</span>
+                </div>
+              </form>
+              <p class="mt-3 text-xs text-steel-500 text-center"><a href="pages/help.html" class="text-accent hover:text-accent-light transition-colors">See more examples &amp; full form &rarr;</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">What We Do</h2>
+        <p class="mt-4 text-lg text-steel-400">End-to-end consulting across SAP security, governance, and identity management — from initial assessment through production support.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- SAP GRC -->
+        <a href="pages/sap-grc.html" class="card-hover group block bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">SAP GRC Consulting</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Implementation, upgrade, and optimization of SAP GRC Access Control, Process Control, and Risk Management. Ruleset customization, SoD analysis, and compliance workflow design.</p>
+        </a>
+
+        <!-- SailPoint IIQ -->
+        <a href="pages/sailpoint-iiq.html" class="card-hover group block bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">SailPoint IIQ</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Identity governance, access certification, lifecycle management, and provisioning. SailPoint-to-SAP integration, role mining, and entitlement reviews.</p>
+        </a>
+
+        <!-- SAP Integration -->
+        <a href="pages/sap-integration.html" class="card-hover group block bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">SAP Integration</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Cross-system integration architecture, API management, S/4HANA migration security, and third-party connector development for enterprise landscapes.</p>
+        </a>
+
+        <!-- Security Consulting -->
+        <a href="pages/security-consulting.html" class="card-hover group block bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Security Consulting</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Role architecture redesign, authorization object analysis, task-based security models, audit remediation, and ongoing security support and maintenance.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEMPLATE LIBRARY PROMO ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900 bg-grid">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-6">
+            For SAP &amp; GRC Consultants
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+            You Know How to Build It.<br>Now You Don't Have To.
+          </h2>
+          <p class="mt-4 text-lg text-steel-400 leading-relaxed">
+            Every SAP security consultant has built SoD rulesets, role matrices, project plans, and workshop decks dozens of times. The work is tedious, repetitive, and unavoidable. Our template library lets you download the deliverable, review and customize it in a fraction of the time, and present it as your own work. The hours you didn't spend building it are margin you keep.
+          </p>
+
+          <div class="mt-8 space-y-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">SAP Role & Authorization Configs</span>
+                <p class="text-sm text-steel-400">Role matrices, authorization object templates, security audit checklists</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">GRC Process Documents</span>
+                <p class="text-sm text-steel-400">Risk assessment frameworks, compliance checklists, audit readiness templates</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">SailPoint IIQ Templates</span>
+                <p class="text-sm text-steel-400">Identity governance workflows, access certification configs, integration blueprints</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">Scripts, BPDs & Training Materials</span>
+                <p class="text-sm text-steel-400">ABAP scripts, business process docs, course outlines, lab exercises</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <a href="templates/index.html" class="inline-flex items-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
+              Explore Templates
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Template preview cards -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-navy-800 border border-navy-700 rounded-lg p-5 space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <span class="block text-xs text-steel-500 font-medium uppercase tracking-wider">Matrix</span>
+            <span class="block text-sm text-slate-900 font-medium">SAP SoD Ruleset Template</span>
+            <span class="block text-xs text-steel-400">Excel &middot; 240+ rules</span>
+          </div>
+          <div class="bg-navy-800 border border-navy-700 rounded-lg p-5 space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            </div>
+            <span class="block text-xs text-steel-500 font-medium uppercase tracking-wider">Checklist</span>
+            <span class="block text-sm text-slate-900 font-medium">GRC Audit Readiness</span>
+            <span class="block text-xs text-steel-400">PDF &middot; 12 sections</span>
+          </div>
+          <div class="bg-navy-800 border border-navy-700 rounded-lg p-5 space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <span class="block text-xs text-steel-500 font-medium uppercase tracking-wider">Script</span>
+            <span class="block text-sm text-slate-900 font-medium">Role Upload ABAP Script</span>
+            <span class="block text-xs text-steel-400">ABAP &middot; Documented</span>
+          </div>
+          <div class="bg-navy-800 border border-navy-700 rounded-lg p-5 space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <span class="block text-xs text-steel-500 font-medium uppercase tracking-wider">Training</span>
+            <span class="block text-sm text-slate-900 font-medium">GRC End-User Guide</span>
+            <span class="block text-xs text-steel-400">PPTX &middot; 45 slides</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIAL ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <svg class="w-12 h-12 text-accent/30 mx-auto mb-8" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z"/></svg>
+      <blockquote class="text-xl lg:text-2xl text-steel-200 leading-relaxed font-medium">
+        "Santosh worked on our security model, taking it from a position-based model with hundreds of transactions per role to a task-based model with 20 or fewer transactions per role. This allowed us to keep a flexible workforce without over-extending security in the system."
+      </blockquote>
+      <div class="mt-8">
+        <p class="text-slate-900 font-semibold">Senior IT Director</p>
+        <p class="text-sm text-steel-500">Precision Turned Product Manufacturer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY US ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Why vividConsulting</h2>
+        <p class="mt-4 text-lg text-steel-400">We combine deep SAP technical expertise with real-world compliance and identity management experience.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-5xl font-extrabold text-gradient mb-3">15+</div>
+          <p class="text-slate-900 font-semibold text-lg">Years of SAP Security</p>
+          <p class="text-sm text-steel-400 mt-2">Deep hands-on experience across ECC, S/4HANA, BW, CRM, SRM, and GRC platforms.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-extrabold text-gradient mb-3">100%</div>
+          <p class="text-slate-900 font-semibold text-lg">Audit Pass Rate</p>
+          <p class="text-sm text-steel-400 mt-2">Every security model and GRC implementation we've delivered has passed its first external audit cycle.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-extrabold text-gradient mb-3">All</div>
+          <p class="text-slate-900 font-semibold text-lg">Major Industries</p>
+          <p class="text-sm text-steel-400 mt-2">Manufacturing, oil & gas, pharmaceuticals, financial services, retail, utilities, and public sector.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950 bg-grid">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Ready to Strengthen Your SAP Security Posture?</h2>
+      <p class="mt-4 text-lg text-steel-400 max-w-2xl mx-auto">Whether you need a full GRC implementation, a security model redesign, or SailPoint IIQ integration — we can help. Let's start with a conversation.</p>
+      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#ask" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+          Tell Us What's Going On
+        </a>
+        <a href="templates/index.html" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+          View Template Library
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy-950 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <img src="images/vividconsulting.png" alt="vividConsulting.INFO" class="h-7 w-auto">
+          <p class="mt-3 text-sm text-steel-500 leading-relaxed">
+            Enterprise SAP Security, GRC & Identity Management consulting based in Dallas, TX.
+          </p>
+          <p class="mt-4 text-sm text-steel-600">
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="pages/sap-grc.html" class="hover:text-accent transition-colors">SAP GRC Consulting</a></li>
+            <li><a href="pages/sailpoint-iiq.html" class="hover:text-accent transition-colors">SailPoint IIQ</a></li>
+            <li><a href="pages/sap-integration.html" class="hover:text-accent transition-colors">SAP Integration</a></li>
+            <li><a href="pages/security-consulting.html" class="hover:text-accent transition-colors">Security Consulting</a></li>
+            <li><a href="pages/aerospace-defense.html" class="hover:text-accent transition-colors">Aerospace & Defense</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="templates/index.html" class="hover:text-accent transition-colors">Template Library</a></li>
+            <li><a href="blog/index.html" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="pages/careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="pages/help.html" class="hover:text-accent transition-colors">Ask Us Anything</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="pages/about.html" class="hover:text-accent transition-colors">About</a></li>
+            <li><a href="pages/contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="pages/privacy.html" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+            <li><a href="pages/terms.html" class="hover:text-accent transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-navy-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-steel-600">&copy; 2026 vividConsulting.INFO. All rights reserved.</p>
+        <a href="mailto:info@vividConsulting.INFO" class="text-sm text-steel-500 hover:text-accent transition-colors">info@vividConsulting.INFO</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Persona switcher -->
+  <script>
+    function switchPersona(persona) {
+      // Update tabs
+      document.querySelectorAll('.persona-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.persona-panel').forEach(p => p.classList.remove('active'));
+
+      // Homepage tabs
+      const hpTab = document.getElementById('hp-tab-' + persona);
+      const hpPanel = document.getElementById('hp-panel-' + persona);
+      if (hpTab) hpTab.classList.add('active');
+      if (hpPanel) hpPanel.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <title>Terms of Service — vividConsulting.INFO</title>
+  <meta name="description" content="vividConsulting.INFO terms of service. Review our terms and conditions for using our website and template library subscription.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b1ba; }
+
+    /* Gradient text utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #00b1ba 0%, #33c4cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subtle grid background */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,177,186,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,177,186,0.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* Nav dropdown */
+    /* Dropdown: use padding-top on dropdown to bridge the gap */
+    .nav-dropdown { display: none; padding-top: 0; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .nav-parent .nav-dropdown { top: 100%; padding-top: 8px; }
+    .nav-parent .nav-dropdown > :first-child { margin-top: 0; }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="../index.html" class="flex-shrink-0">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="../index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Home</a>
+
+          <!-- Services Dropdown -->
+          <div class="nav-parent relative">
+            <button class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-slate-900 transition-colors flex items-center gap-1">
+              Services
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 w-72 bg-white border border-navy-700 rounded-lg shadow-xl py-2">
+              <a href="sap-grc.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP GRC Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Implementation, upgrades & compliance</span>
+              </a>
+              <a href="sailpoint-iiq.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SailPoint IIQ</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Identity governance & access management</span>
+              </a>
+              <a href="sap-integration.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP Integration Services</span>
+                <span class="block text-xs text-steel-400 mt-0.5">System integration & data migration</span>
+              </a>
+              <a href="security-consulting.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Security Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Role design, SoD & authorization architecture</span>
+              </a>
+              <a href="aerospace-defense.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Aerospace & Defense</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Cleared SAP & ICAM work for federal agencies</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="../templates/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Template Library</a>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">About</a>
+          <a href="../blog/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Blog</a>
+          <a href="contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+          <a href="help.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Help</a>
+
+          <a href="../templates/index.html" class="ml-4 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors">
+            Subscribe
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="lg:hidden p-2 text-steel-400 hover:text-slate-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+      <nav class="space-y-1">
+        <a href="../index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Home</a>
+        <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
+        <a href="sap-grc.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP GRC Consulting</a>
+        <a href="sailpoint-iiq.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SailPoint IIQ</a>
+        <a href="sap-integration.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP Integration Services</a>
+        <a href="security-consulting.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Security Consulting</a>
+        <a href="aerospace-defense.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Aerospace & Defense</a>
+        <div class="border-t border-navy-700 my-3"></div>
+        <a href="../templates/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Template Library</a>
+        <a href="about.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">About</a>
+        <a href="../blog/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Blog</a>
+        <a href="contact.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Contact</a>
+        <a href="help.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Help</a>
+        <div class="pt-3">
+          <a href="../templates/index.html" class="block text-center px-5 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors">Subscribe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative pt-32 lg:pt-44 pb-12 lg:pb-16 bg-grid overflow-hidden">
+    <!-- Gradient orb -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          Terms of<br>
+          <span class="text-gradient">Service</span>
+        </h1>
+        <p class="mt-4 text-steel-400 text-base">Effective date: January 1, 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article class="prose prose-invert max-w-none text-steel-300 space-y-8 leading-relaxed">
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">1. Use of the Site</h2>
+          <p>
+            You agree to use vividConsulting.INFO (the "Site") only for lawful purposes and in a way that does not infringe upon the rights of others or restrict their use and enjoyment of the Site. Prohibited behavior includes:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mt-4 text-steel-400">
+            <li>Harassing or causing distress or inconvenience to any person</li>
+            <li>Transmitting offensive or obscene content</li>
+            <li>Disrupting the normal flow of dialogue in our Site</li>
+            <li>Attempting to gain unauthorized access to our systems</li>
+            <li>Reverse engineering, copying, or modifying the Site code or architecture</li>
+            <li>Circumventing security measures or bypassing authentication controls</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">2. Template Library Subscription</h2>
+
+          <h3 class="text-lg font-semibold text-slate-900 mt-6 mb-3">License Grant</h3>
+          <p>
+            vividConsulting.INFO grants you a non-exclusive, non-transferable license to download and use templates (documents, spreadsheets, scripts, and guides) provided through our Template Library subscription. This license permits you to use the templates on your consulting engagements for your clients, subject to the restrictions below.
+          </p>
+
+          <h3 class="text-lg font-semibold text-slate-900 mt-6 mb-3">Usage Restrictions</h3>
+          <ul class="list-disc list-inside space-y-2 mt-4 text-steel-400">
+            <li>You may customize and modify templates for your specific client needs</li>
+            <li>You may use templates across unlimited consulting engagements</li>
+            <li>You may not redistribute, resell, or republish templates to third parties</li>
+            <li>You may not represent templates as your own original work without attribution</li>
+            <li>You may not use templates for purposes outside of consulting services</li>
+            <li>You may not sublicense, rent, or lease the templates to others</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-slate-900 mt-6 mb-3">Subscription Billing</h3>
+          <p>
+            Subscriptions are billed through Stripe according to the plan you select. You authorize vividConsulting.INFO to charge your payment method on a recurring basis (monthly, quarterly, or annually, depending on your plan). By proceeding with subscription, you agree to pay all charges and fees that may accrue to your account.
+          </p>
+          <ul class="list-disc list-inside space-y-2 mt-4 text-steel-400">
+            <li>Billing occurs on the same day each month (or subscription period)</li>
+            <li>You are responsible for maintaining accurate payment information</li>
+            <li>If a payment fails, we will attempt recharge</li>
+            <li>Subscription renewals will continue until canceled by you</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-slate-900 mt-6 mb-3">Cancellation</h3>
+          <p>
+            You may cancel your subscription at any time through your account settings or by contacting support@vividConsulting.INFO. Cancellation becomes effective at the end of your current billing cycle. No refunds are provided for unused portions of a billing period.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">3. Intellectual Property</h2>
+          <p>
+            All content, materials, code, design, and functionality of the Site are the exclusive property of vividConsulting.INFO and are protected by copyright, trademark, and other intellectual property laws. You may not use, reproduce, or distribute any content without prior written permission, except as expressly permitted in these Terms (such as template use under your subscription).
+          </p>
+          <p class="mt-4">
+            You retain ownership of any content you create or customize using our templates. However, you grant vividConsulting.INFO a worldwide, royalty-free license to use any feedback or suggestions you provide to improve our services.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">4. Limitation of Liability</h2>
+          <p>
+            To the fullest extent permitted by law, vividConsulting.INFO shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the Site or templates, including but not limited to:
+          </p>
+          <ul class="list-disc list-inside space-y-2 mt-4 text-steel-400">
+            <li>Loss of profits, revenue, or business opportunities</li>
+            <li>Loss of data or business interruption</li>
+            <li>Errors or defects in templates or content</li>
+            <li>Any claims arising from your use of templates in client engagements</li>
+          </ul>
+          <p class="mt-4">
+            Our total liability shall not exceed the amount you paid for your subscription in the preceding 12 months. Some jurisdictions do not allow the exclusion of certain warranties, so some of the above limitations may not apply to you.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">5. Disclaimer of Warranties</h2>
+          <p>
+            The Site and templates are provided on an "as-is" and "as-available" basis without warranties of any kind, either express or implied. vividConsulting.INFO disclaims all warranties including merchantability, fitness for a particular purpose, non-infringement, and accuracy.
+          </p>
+          <p class="mt-4">
+            We do not warrant that the Site will be uninterrupted, secure, or error-free, or that any defects will be corrected. You assume all risk and responsibility for determining whether templates are suitable for your needs.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">6. Governing Law & Jurisdiction</h2>
+          <p>
+            These Terms of Service shall be governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of laws principles. Any dispute arising from these Terms or your use of the Site shall be subject to the exclusive jurisdiction of the state and federal courts located in Dallas County, Texas.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">7. Contact Us</h2>
+          <p>
+            If you have questions about these Terms of Service, please contact us:
+          </p>
+          <p class="mt-4 font-medium text-slate-900">
+            info@vividConsulting.INFO
+          </p>
+          <p class="text-sm text-steel-500 mt-4">
+            vividConsulting.INFO<br>
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+
+        <div class="border-t border-navy-700 pt-8">
+          <p class="text-sm text-steel-500">
+            These Terms of Service were last updated on January 1, 2026. We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the Site following any changes constitutes your acceptance of the new terms.
+          </p>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy-950 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-7 w-auto">
+          <p class="mt-3 text-sm text-steel-500 leading-relaxed">
+            Enterprise SAP Security, GRC & Identity Management consulting based in Dallas, TX.
+          </p>
+          <p class="mt-4 text-sm text-steel-600">
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="sap-grc.html" class="hover:text-accent transition-colors">SAP GRC Consulting</a></li>
+            <li><a href="sailpoint-iiq.html" class="hover:text-accent transition-colors">SailPoint IIQ</a></li>
+            <li><a href="sap-integration.html" class="hover:text-accent transition-colors">SAP Integration</a></li>
+            <li><a href="security-consulting.html" class="hover:text-accent transition-colors">Security Consulting</a></li>
+            <li><a href="aerospace-defense.html" class="hover:text-accent transition-colors">Aerospace & Defense</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="../templates/index.html" class="hover:text-accent transition-colors">Template Library</a></li>
+            <li><a href="../blog/index.html" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="help.html" class="hover:text-accent transition-colors">Ask Us Anything</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+            <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="privacy.html" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-accent transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-navy-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-steel-600">&copy; 2026 vividConsulting.INFO. All rights reserved.</p>
+        <a href="mailto:info@vividConsulting.INFO" class="text-sm text-steel-500 hover:text-accent transition-colors">info@vividConsulting.INFO</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

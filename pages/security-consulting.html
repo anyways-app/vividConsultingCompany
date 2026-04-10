@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <title>Security Consulting — vividConsulting.INFO</title>
+  <meta name="description" content="Role architecture redesign, authorization management, SoD analysis, and security audit remediation for SAP systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b1ba; }
+
+    /* Gradient text utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #00b1ba 0%, #33c4cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subtle grid background */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,177,186,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,177,186,0.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* Nav dropdown */
+    /* Dropdown: use padding-top on dropdown to bridge the gap */
+    .nav-dropdown { display: none; padding-top: 0; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .nav-parent .nav-dropdown { top: 100%; padding-top: 8px; }
+    .nav-parent .nav-dropdown > :first-child { margin-top: 0; }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="../index.html" class="flex-shrink-0">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="../index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Home</a>
+
+          <!-- Services Dropdown -->
+          <div class="nav-parent relative">
+            <button class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-slate-900 transition-colors flex items-center gap-1">
+              Services
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 w-72 bg-white border border-navy-700 rounded-lg shadow-xl py-2">
+              <a href="sap-grc.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP GRC Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Implementation, upgrades & compliance</span>
+              </a>
+              <a href="sailpoint-iiq.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SailPoint IIQ</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Identity governance & access management</span>
+              </a>
+              <a href="sap-integration.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP Integration Services</span>
+                <span class="block text-xs text-steel-400 mt-0.5">System integration & data migration</span>
+              </a>
+              <a href="security-consulting.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors bg-navy-700">
+                <span class="block text-sm font-medium text-slate-900">Security Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Role design, SoD & authorization architecture</span>
+              </a>
+              <a href="aerospace-defense.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Aerospace & Defense</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Cleared SAP & ICAM work for federal agencies</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="../templates/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Template Library</a>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">About</a>
+          <a href="../blog/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Blog</a>
+          <a href="contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+          <a href="help.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Help</a>
+
+          <a href="../templates/index.html" class="ml-4 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors">
+            Subscribe
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="lg:hidden p-2 text-steel-400 hover:text-slate-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+      <nav class="space-y-1">
+        <a href="../index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Home</a>
+        <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
+        <a href="sap-grc.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP GRC Consulting</a>
+        <a href="sailpoint-iiq.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SailPoint IIQ</a>
+        <a href="sap-integration.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP Integration Services</a>
+        <a href="security-consulting.html" class="block px-4 py-3 text-slate-900 bg-navy-700 rounded-lg transition-colors font-medium">Security Consulting</a>
+        <a href="aerospace-defense.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Aerospace & Defense</a>
+        <div class="border-t border-navy-700 my-3"></div>
+        <a href="../templates/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Template Library</a>
+        <a href="about.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">About</a>
+        <a href="../blog/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Blog</a>
+        <a href="contact.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Contact</a>
+        <a href="help.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Help</a>
+        <div class="pt-3">
+          <a href="../templates/index.html" class="block text-center px-5 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors">Subscribe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative pt-32 lg:pt-44 pb-20 lg:pb-32 bg-grid overflow-hidden">
+    <!-- Gradient orb -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          Security Consulting
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          Role Architecture<br>
+          <span class="text-gradient">& Authorization</span><br>
+          Management
+        </h1>
+
+        <p class="mt-6 text-lg lg:text-xl text-steel-400 max-w-2xl leading-relaxed">
+          Transform your SAP security model from position-based to task-based design. We architect efficient role structures, remediate segregation of duties violations, and build authorization frameworks that scale with your business while maintaining compliance.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+            Schedule a Consultation
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+            Request a Security Audit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Our Security Services</h2>
+        <p class="mt-4 text-lg text-steel-400">Comprehensive security consulting covering role architecture, authorization analysis, audit remediation, and ongoing support.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Role Architecture Redesign -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">Role Architecture Redesign</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Transform position-based role models into efficient task-based structures. We analyze your current authorization landscape, identify redundancy and overlap, and design scalable role hierarchies that reduce complexity while maintaining security controls.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Position-to-task model conversion</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Role compression & consolidation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Scalability & flexibility planning</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Authorization Object Analysis -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">Authorization Object Analysis & Optimization</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Conduct deep dives into PFCG authorization objects, SAP_* and custom objects. We map business functions to technical authorizations, identify redundant/unused objects, optimize field values, and design efficient grant strategies.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Object usage analysis & mapping</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Field-level value optimization</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Unused object identification</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Segregation of Duties -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">Segregation of Duties (SoD) Analysis & Remediation</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Identify and remediate segregation of duties violations across your SAP system. We perform comprehensive SoD analysis using both standard and custom rules, provide detailed violation reports with risk assessment, and design remediation strategies.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>SoD ruleset design & compliance</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Violation detection & reporting</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Risk-based remediation planning</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Security Audit Preparation -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">Security Audit Preparation & Remediation</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Prepare your SAP environment for external audits. We conduct pre-audit reviews, identify compliance gaps, execute remediation work, and provide documentation packages that demonstrate control effectiveness to auditors.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Pre-audit gap assessment</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Control remediation execution</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Audit documentation packages</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- User Access Reviews -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM15 20h-8a4 4 0 014-4h4a4 4 0 014 4z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">User Access Reviews & Certifications</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Execute comprehensive user access reviews and certification campaigns. We manage the process from user data extraction through certification, exception handling, and access revocation, ensuring accountability and compliance.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>User-role reconciliation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Manager certification campaigns</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Access revocation tracking</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sensitive & Critical Access -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">Sensitive & Critical Authorization Management</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Implement controls and monitoring for sensitive transactions and critical authorizations. We design role-based frameworks for high-risk functions (RFC, batch jobs, ABAP, etc.) with enhanced approval workflows and audit trails.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>High-risk transaction identification</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Enhanced approval workflows</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Comprehensive audit logging</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ongoing Support -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-8 hover:border-accent/40">
+          <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-accent transition-colors">Ongoing Security Support & Maintenance</h3>
+          <p class="text-steel-400 leading-relaxed mb-4">
+            Maintain your security posture with subscription-based support and maintenance contracts. We provide on-demand consulting, quarterly reviews, role audits, compliance updates, and proactive optimization work.
+          </p>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Quarterly security reviews</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>On-demand advisory hours</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Subscription template access</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIAL ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <svg class="w-12 h-12 text-accent/30 mx-auto mb-8" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z"/></svg>
+      <blockquote class="text-xl lg:text-2xl text-steel-200 leading-relaxed font-medium">
+        "Santosh worked on our security model, taking it from a position-based model with hundreds of transactions per role to a task-based model with 20 or fewer transactions per role. This allowed us to keep a flexible workforce without over-extending security in the system."
+      </blockquote>
+      <div class="mt-8">
+        <p class="text-slate-900 font-semibold">Senior IT Director</p>
+        <p class="text-sm text-steel-500">Precision Turned Product Manufacturer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950 bg-grid">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Ready to Optimize Your SAP Security Architecture?</h2>
+      <p class="mt-4 text-lg text-steel-400 max-w-2xl mx-auto">Whether you need a complete role redesign, SoD remediation, audit preparation, or ongoing security support — we can help. Let's start with a consultation.</p>
+      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+          Schedule a Consultation
+        </a>
+        <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+          Request a Security Audit
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy-950 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-7 w-auto">
+          <p class="mt-3 text-sm text-steel-500 leading-relaxed">
+            Enterprise SAP Security, GRC & Identity Management consulting based in Dallas, TX.
+          </p>
+          <p class="mt-4 text-sm text-steel-600">
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="sap-grc.html" class="hover:text-accent transition-colors">SAP GRC Consulting</a></li>
+            <li><a href="sailpoint-iiq.html" class="hover:text-accent transition-colors">SailPoint IIQ</a></li>
+            <li><a href="sap-integration.html" class="hover:text-accent transition-colors">SAP Integration</a></li>
+            <li><a href="security-consulting.html" class="hover:text-accent transition-colors">Security Consulting</a></li>
+            <li><a href="aerospace-defense.html" class="hover:text-accent transition-colors">Aerospace & Defense</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="../templates/index.html" class="hover:text-accent transition-colors">Template Library</a></li>
+            <li><a href="../blog/index.html" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="help.html" class="hover:text-accent transition-colors">Ask Us Anything</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+            <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="privacy.html" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-accent transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-navy-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-steel-600">&copy; 2026 vividConsulting.INFO. All rights reserved.</p>
+        <a href="mailto:info@vividConsulting.INFO" class="text-sm text-steel-500 hover:text-accent transition-colors">info@vividConsulting.INFO</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

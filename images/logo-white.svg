@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 52" fill="none">
+  <!-- V brand mark matching original logo - light variant for dark backgrounds -->
+  <path d="M0 0 L14 0 L28 40 L34 24 L40 40 L54 0 L40 0 L34 18 L28 0 L14 0" fill="#e2e8f0"/>
+  <path d="M14 0 L28 40 L34 24 L28 0 Z" fill="#00b1ba"/>
+  <!-- Text: vividconsulting.info -->
+  <text x="60" y="38" font-family="'Open Sans', Inter, system-ui, sans-serif" font-size="34" letter-spacing="-0.01em">
+    <tspan font-weight="700" fill="#f1f5f9">vivid</tspan><tspan font-weight="300" fill="#cbd5e1">consulting</tspan><tspan font-weight="300" fill="#cbd5e1" font-size="22" dy="-1">.</tspan><tspan font-weight="300" fill="#cbd5e1" font-size="22">info</tspan>
+  </text>
+</svg>

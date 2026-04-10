@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <title>Template Library — vividConsulting.INFO</title>
+  <meta name="description" content="Production-tested templates for SAP security, GRC, and identity management consultants. Subscribe for unlimited access to role matrices, compliance frameworks, SailPoint configs, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b1ba; }
+
+    /* Gradient text utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #00b1ba 0%, #33c4cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subtle grid background */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,177,186,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,177,186,0.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* Nav dropdown */
+    /* Dropdown: use padding-top on dropdown to bridge the gap */
+    .nav-dropdown { display: none; padding-top: 0; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .nav-parent .nav-dropdown { top: 100%; padding-top: 8px; }
+    .nav-parent .nav-dropdown > :first-child { margin-top: 0; }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Pricing card highlight */
+    .pricing-featured {
+      border-color: #00b1ba;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="../index.html" class="flex-shrink-0">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="../index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Home</a>
+
+          <!-- Services Dropdown -->
+          <div class="nav-parent relative">
+            <button class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-slate-900 transition-colors flex items-center gap-1">
+              Services
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 w-72 bg-white border border-navy-700 rounded-lg shadow-xl py-2">
+              <a href="../pages/sap-grc.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP GRC Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Implementation, upgrades & compliance</span>
+              </a>
+              <a href="../pages/sailpoint-iiq.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SailPoint IIQ</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Identity governance & access management</span>
+              </a>
+              <a href="../pages/sap-integration.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP Integration Services</span>
+                <span class="block text-xs text-steel-400 mt-0.5">System integration & data migration</span>
+              </a>
+              <a href="../pages/security-consulting.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Security Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Role design, SoD & authorization architecture</span>
+              </a>
+              <a href="../pages/aerospace-defense.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Aerospace & Defense</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Cleared SAP & ICAM work for federal agencies</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-slate-900 hover:text-accent transition-colors">Template Library</a>
+          <a href="../pages/about.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">About</a>
+          <a href="../blog/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Blog</a>
+          <a href="../pages/contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+          <a href="../pages/help.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Help</a>
+
+          <a href="#pricing" class="ml-4 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors">
+            Subscribe
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="lg:hidden p-2 text-steel-400 hover:text-slate-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+      <nav class="space-y-1">
+        <a href="../index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Home</a>
+        <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
+        <a href="../pages/sap-grc.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP GRC Consulting</a>
+        <a href="../pages/sailpoint-iiq.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SailPoint IIQ</a>
+        <a href="../pages/sap-integration.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP Integration Services</a>
+        <a href="../pages/security-consulting.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Security Consulting</a>
+        <a href="../pages/aerospace-defense.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Aerospace & Defense</a>
+        <div class="border-t border-navy-700 my-3"></div>
+        <a href="index.html" class="block px-4 py-3 text-slate-900 font-medium bg-navy-700 rounded-lg">Template Library</a>
+        <a href="../pages/about.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">About</a>
+        <a href="../blog/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Blog</a>
+        <a href="../pages/contact.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Contact</a>
+        <a href="../pages/help.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Help</a>
+        <div class="pt-3">
+          <a href="#pricing" class="block text-center px-5 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors">Subscribe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative pt-32 lg:pt-44 pb-20 lg:pb-28 bg-grid overflow-hidden">
+    <!-- Gradient orb -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          New templates added monthly
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          You Know How to Build It.<br>
+          <span class="text-gradient">Now Bill For It in a Fraction of the Time.</span>
+        </h1>
+        <p class="mt-6 text-lg lg:text-xl text-steel-400 max-w-2xl leading-relaxed">
+          You've built SoD rulesets, role matrices, cutover plans, and workshop decks dozens of times. You know exactly what goes in them. But it still takes 10 hours of tedious, repetitive work every single time. Download ours, review and customize it in one hour, present it as your deliverable. The other 9 hours are pure profit.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+            View Plans & Pricing
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+          <a href="#" data-action="create-account" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+            Create Free Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== VALUE PROPOSITION ========== -->
+  <section class="py-16 lg:py-20 bg-navy-950 border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-gradient">10 hrs</div>
+          <p class="mt-2 text-sm text-steel-400">To build a deliverable from scratch</p>
+        </div>
+        <div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-gradient">1 hr</div>
+          <p class="mt-2 text-sm text-steel-400">To review, customize &amp; present ours</p>
+        </div>
+        <div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-gradient">9 hrs</div>
+          <p class="mt-2 text-sm text-steel-400">Of margin you keep — per deliverable</p>
+        </div>
+        <div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-gradient">78+</div>
+          <p class="mt-2 text-sm text-steel-400">Deliverables in the library today</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section id="pricing" class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Choose Your Plan</h2>
+        <p class="mt-4 text-lg text-steel-400">Every deliverable you download instead of building is hours you bill but don't spend. Start free.</p>
+      </div>
+
+      <!-- Billing toggle -->
+      <div class="flex justify-center items-center gap-4 mb-16">
+        <span id="monthlyLabel" class="text-sm font-medium text-slate-900">Monthly</span>
+        <button id="billingToggle" onclick="toggleBilling()" class="relative w-14 h-7 bg-navy-600 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-accent/50" aria-label="Toggle annual billing">
+          <span id="toggleDot" class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-200"></span>
+        </button>
+        <span id="annualLabel" class="text-sm font-medium text-steel-400">Annual <span class="text-emerald-400 font-semibold">(Save 40%)</span></span>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+
+        <!-- FREE TIER -->
+        <div class="bg-navy-800 border border-navy-700 rounded-2xl p-8 lg:p-10">
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-slate-900">Free</h3>
+            <p class="mt-2 text-sm text-steel-400">Explore the library and access free-tier content.</p>
+          </div>
+
+          <div class="mb-8">
+            <span class="text-4xl font-extrabold text-slate-900">$0</span>
+            <span class="text-steel-400">/forever</span>
+          </div>
+
+          <a href="#" data-action="create-account" class="block text-center px-6 py-3.5 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg transition-colors mb-8">
+            Create Free Account
+          </a>
+
+          <div class="space-y-4">
+            <p class="text-xs font-semibold text-steel-500 uppercase tracking-wider">Includes:</p>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Access to all free-tier templates</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Browse full library descriptions</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Monthly newsletter with new releases</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-steel-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-500">No access to Consultant-tier content</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONSULTANT TIER (Featured) -->
+        <div class="bg-navy-800 border-2 pricing-featured rounded-2xl p-8 lg:p-10 relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="inline-block px-4 py-1 bg-accent text-white text-xs font-bold uppercase tracking-wider rounded-full">Most Popular</span>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-slate-900">Consultant</h3>
+            <p class="mt-2 text-sm text-steel-400">Full library. Download any deliverable, review it, make it yours. You know how to build all of this — now you don't have to.</p>
+          </div>
+
+          <div class="mb-2">
+            <span id="consultantPrice" class="text-4xl font-extrabold text-slate-900">$199</span>
+            <span id="consultantInterval" class="text-steel-400">/month</span>
+          </div>
+          <p id="consultantSavings" class="text-sm text-steel-500 mb-8 h-5"></p>
+
+          <a href="#" data-stripe="true" data-plan="consultant" class="block text-center px-6 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25 mb-8">
+            Subscribe Now
+          </a>
+
+          <div class="space-y-4">
+            <p class="text-xs font-semibold text-steel-500 uppercase tracking-wider">Everything in Free, plus:</p>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Unlimited downloads across all categories</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Premium SAP role configs & ABAP scripts</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">SailPoint IIQ integration templates</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Training decks & BPD templates</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Immediate access to all new monthly releases</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Template request priority</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Licensed for client engagements</span>
+            </div>
+          </div>
+
+          <p class="mt-8 text-xs text-steel-500 text-center">Powered by Stripe. Cancel anytime.</p>
+        </div>
+
+        <!-- ENTERPRISE TIER -->
+        <div class="bg-navy-800 border border-navy-700 rounded-2xl p-8 lg:p-10">
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-slate-900">Enterprise</h3>
+            <p class="mt-2 text-sm text-steel-400">The deliverables plus the expert who tells you they're right for your environment. Full library access with weekly consulting hours built in.</p>
+          </div>
+
+          <div class="mb-2">
+            <span class="text-4xl font-extrabold text-slate-900">Custom</span>
+          </div>
+          <p class="text-sm text-steel-500 mb-8 h-5">Tailored to your team &amp; hours</p>
+
+          <a href="../pages/contact.html" class="block text-center px-6 py-3.5 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg transition-colors mb-8">
+            Let's Talk
+          </a>
+
+          <div class="space-y-4">
+            <p class="text-xs font-semibold text-steel-500 uppercase tracking-wider">Everything in Consultant, plus:</p>
+
+            <!-- Headline feature: expert validation -->
+            <div class="bg-accent/5 border border-accent/20 rounded-lg p-4 mb-2">
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <div>
+                  <span class="text-sm text-slate-900 font-semibold">1–5 hours/week with a senior SAP security consultant</span>
+                  <p class="text-xs text-steel-400 mt-1">You can read and understand these documents. But before you stake your name on them internally, you want someone with 15+ years of field experience to review them against your specific environment and tell you they're right. That's what these hours are for.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Expert review of templates customized to your landscape</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Join your team calls, review architectures, advise on decisions</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Written deliverables from every session</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Multiple seats &amp; centralized billing</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-steel-300">Custom template development for your environment</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Billing toggle script -->
+  <script>
+    let isAnnual = false;
+    function toggleBilling() {
+      isAnnual = !isAnnual;
+      const dot = document.getElementById('toggleDot');
+      const toggle = document.getElementById('billingToggle');
+      const monthlyLabel = document.getElementById('monthlyLabel');
+      const annualLabel = document.getElementById('annualLabel');
+      const price = document.getElementById('consultantPrice');
+      const interval = document.getElementById('consultantInterval');
+      const savings = document.getElementById('consultantSavings');
+
+      if (isAnnual) {
+        dot.style.transform = 'translateX(28px)';
+        toggle.classList.remove('bg-navy-600');
+        toggle.classList.add('bg-accent');
+        monthlyLabel.classList.remove('text-slate-900');
+        monthlyLabel.classList.add('text-steel-400');
+        annualLabel.classList.remove('text-steel-400');
+        annualLabel.classList.add('text-slate-900');
+        price.textContent = '$1,433';
+        interval.textContent = '/year';
+        savings.textContent = 'That\u2019s ~$119/mo \u2014 save $955 vs. monthly';
+        savings.classList.remove('text-steel-500');
+        savings.classList.add('text-emerald-400');
+      } else {
+        dot.style.transform = 'translateX(0)';
+        toggle.classList.remove('bg-accent');
+        toggle.classList.add('bg-navy-600');
+        monthlyLabel.classList.remove('text-steel-400');
+        monthlyLabel.classList.add('text-slate-900');
+        annualLabel.classList.remove('text-slate-900');
+        annualLabel.classList.add('text-steel-400');
+        price.textContent = '$199';
+        interval.textContent = '/month';
+        savings.textContent = '';
+        savings.classList.remove('text-emerald-400');
+        savings.classList.add('text-steel-500');
+      }
+    }
+  </script>
+
+  <!-- ========== ROI CALCULATOR ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">The Margin Math</h2>
+        <p class="mt-4 text-lg text-steel-400">You bill for a 10-hour deliverable. You spend 1 hour downloading, reviewing, and customizing ours. Enter your rate.</p>
+      </div>
+
+      <div class="bg-navy-800 border border-navy-700 rounded-2xl p-8 lg:p-10">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <!-- Input side -->
+          <div>
+            <label for="hourlyRate" class="block text-sm font-medium text-steel-300 mb-2">Your hourly billing rate</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-steel-400 font-semibold">$</span>
+              <input type="number" id="hourlyRate" value="125" min="50" max="500" step="5" oninput="calculateROI()"
+                class="w-full pl-8 pr-4 py-3 bg-navy-700 border border-navy-600 rounded-lg text-slate-900 text-lg font-semibold focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent">
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-steel-500 text-sm">/hour</span>
+            </div>
+            <p class="mt-3 text-xs text-steel-500">Senior SAP security consultants typically bill $100–$175/hr</p>
+          </div>
+
+          <!-- Output side -->
+          <div class="bg-navy-700/50 rounded-xl p-6 space-y-4">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm text-steel-400">What you bill the client (10 hrs)</span>
+              <span id="clientBill" class="text-lg font-bold text-slate-900">$1,250</span>
+            </div>
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm text-steel-400">Your actual time invested (1 hr)</span>
+              <span id="timeInvested" class="text-lg font-bold text-slate-900">$125</span>
+            </div>
+            <div class="border-t border-navy-600 pt-4">
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-steel-300">Margin on that one deliverable</span>
+                <span id="singleMargin" class="text-xl font-extrabold text-emerald-400">$1,125</span>
+              </div>
+            </div>
+            <div class="border-t border-navy-600 pt-4 space-y-3">
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm text-steel-400">Annual subscription cost</span>
+                <span class="text-lg font-bold text-slate-900">$1,433/yr</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm text-steel-400">Deliverables to break even</span>
+                <span id="breakEvenDeliverables" class="text-lg font-bold text-accent">1.3</span>
+              </div>
+              <p id="breakEvenNote" class="text-xs text-emerald-400 font-medium">The subscription pays for itself before your second deliverable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function calculateROI() {
+      const rate = parseFloat(document.getElementById('hourlyRate').value) || 125;
+      const annualCost = 1433;
+      const billableHours = 10;
+      const actualHours = 1;
+
+      const clientBill = rate * billableHours;
+      const timeInvested = rate * actualHours;
+      const margin = clientBill - timeInvested;
+      const breakEven = (annualCost / margin).toFixed(1);
+
+      document.getElementById('clientBill').textContent = '$' + clientBill.toLocaleString();
+      document.getElementById('timeInvested').textContent = '$' + timeInvested.toLocaleString();
+      document.getElementById('singleMargin').textContent = '$' + margin.toLocaleString();
+      document.getElementById('breakEvenDeliverables').textContent = breakEven;
+
+      if (parseFloat(breakEven) < 2) {
+        document.getElementById('breakEvenNote').textContent = 'The subscription pays for itself before your second deliverable.';
+      } else if (parseFloat(breakEven) < 5) {
+        document.getElementById('breakEvenNote').textContent = 'The subscription pays for itself within your first few deliverables.';
+      } else {
+        document.getElementById('breakEvenNote').textContent = 'The subscription pays for itself within ' + Math.ceil(parseFloat(breakEven)) + ' deliverables.';
+      }
+    }
+    calculateROI();
+  </script>
+
+  <!-- ========== TEMPLATE CATEGORIES ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900 bg-grid">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">What's in the Library</h2>
+        <p class="mt-4 text-lg text-steel-400">Every template is built from real engagement deliverables. Organized by the work that eats the most hours.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project & Implementation Planning -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Project & Implementation Plans</h3>
+          <p class="text-sm text-steel-400 mb-3">Project plans, implementation plans, cutover plans, go-live checklists, and milestone trackers — structured for SAP security and GRC rollouts.</p>
+          <p class="text-xs font-medium text-steel-500">Saves 15-25 hrs/engagement</p>
+        </div>
+
+        <!-- SoD & Security Workshop Docs -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">SoD & Security Workshops</h3>
+          <p class="text-sm text-steel-400 mb-3">SoD workshop facilitation decks, security workshop agendas, role-mapping exercises, stakeholder interview guides, and conflict resolution frameworks.</p>
+          <p class="text-xs font-medium text-steel-500">Saves 10-20 hrs/engagement</p>
+        </div>
+
+        <!-- Role Matrices & Auth Configs -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7C5 4 4 5 4 7zm0 5h16M9 4v16"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Role Matrices & Auth Configs</h3>
+          <p class="text-sm text-steel-400 mb-3">Task-based role matrices, authorization object templates, SoD rulesets (240+ rules), security audit checklists, and role naming convention guides.</p>
+          <p class="text-xs font-medium text-steel-500">Saves 10-15 hrs/engagement</p>
+        </div>
+
+        <!-- BPDs & Best Practices -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">BPDs & Best Practices</h3>
+          <p class="text-sm text-steel-400 mb-3">Business process documents, security procedures, integration guidelines, emergency access protocols, and GRC configuration standards.</p>
+          <p class="text-xs font-medium text-steel-500">Saves 8-15 hrs/engagement</p>
+        </div>
+
+        <!-- SailPoint & Integration -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">SailPoint & Integration Configs</h3>
+          <p class="text-sm text-steel-400 mb-3">Identity governance workflows, access certification configs, SAP-to-SailPoint connector blueprints, provisioning policies, and integration architecture docs.</p>
+          <p class="text-xs font-medium text-steel-500">Saves 10-20 hrs/engagement</p>
+        </div>
+
+        <!-- Training & Documentation -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Training & Scripts</h3>
+          <p class="text-sm text-steel-400 mb-3">End-user training decks, admin guides, ABAP scripts for role uploads and mass changes, lab exercises, and knowledge transfer documentation.</p>
+          <p class="text-xs font-medium text-steel-500">Saves 5-10 hrs/engagement</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950 bg-grid">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">How It Works</h2>
+        <p class="mt-4 text-lg text-steel-400">From sign-up to client delivery in four steps.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
+              <span class="text-2xl font-bold text-accent">1</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Create an Account</h3>
+          <p class="text-sm text-steel-400">Sign up free with your email. Instantly access all free-tier templates — no credit card required.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
+              <span class="text-2xl font-bold text-accent">2</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Explore the Library</h3>
+          <p class="text-sm text-steel-400">Browse all template descriptions, previews, and categories. See exactly what's available before upgrading.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
+              <span class="text-2xl font-bold text-accent">3</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Upgrade When the Math Works</h3>
+          <p class="text-sm text-steel-400">The Consultant plan unlocks everything. If one downloaded deliverable saves you 9 billable hours, the annual subscription pays for itself before your second one.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
+              <span class="text-2xl font-bold text-accent">4</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Customize & Deploy</h3>
+          <p class="text-sm text-steel-400">Adapt templates to your client's environment and deliver. All content is licensed for use on consulting engagements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+        <p class="mt-4 text-lg text-steel-400">Everything you need to know about our template library.</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- FAQ 1 -->
+        <div class="bg-navy-800 border border-navy-700 rounded-lg p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">What do I get with the Free tier?</h3>
+          <p class="text-steel-400">Create a free account with your email and you'll have permanent access to every template we tag as "Free tier." You can also browse the full library — titles, descriptions, and previews — so you know exactly what's available before upgrading. Free accounts also receive our monthly newsletter announcing new releases.</p>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="bg-navy-800 border border-navy-700 rounded-lg p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">What's the difference between Free and Consultant?</h3>
+          <p class="text-steel-400">Each template in the library is tagged as either Free or Consultant. Free-tier content is available to all registered users. Consultant-tier content — including premium role matrices, ABAP scripts, SailPoint integration configs, BPDs, and training decks — requires an active Consultant subscription. Free users can see what's in the Consultant tier, but downloading those files requires an upgrade.</p>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="bg-navy-800 border border-navy-700 rounded-lg p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">How does annual billing work?</h3>
+          <p class="text-steel-400">The annual plan is $1,433/year (paid upfront), which saves you 40% compared to paying $199/month. That works out to roughly $119/month. Both plans include identical access — the annual option simply costs less and locks in your rate for 12 months. You can switch between monthly and annual at any time.</p>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="bg-navy-800 border border-navy-700 rounded-lg p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Can I use these templates on client engagements?</h3>
+          <p class="text-steel-400">Yes. All templates — Free and Consultant — are licensed for use on your consulting projects and client engagements. You may customize and deploy them in client environments. Redistribution of the templates themselves (selling or sharing the original files) is not permitted. See our <a href="../pages/terms.html" class="text-accent hover:text-accent-light transition-colors">Terms of Service</a> for full licensing details.</p>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="bg-navy-800 border border-navy-700 rounded-lg p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Who is the Enterprise tier for?</h3>
+          <p class="text-steel-400">Enterprise is designed for in-house SAP security and GRC teams — people who are capable of reading and understanding these deliverables, but want an experienced consultant to validate that the documents are correct for their specific environment before they present them internally. The Consultant tier gives you the deliverables. The Enterprise tier gives you the deliverables <em>plus</em> 1–5 hours per week of direct time with a senior consultant who reviews your customized templates, joins your team meetings, advises on architectural decisions, and provides written deliverables from every session. It's the confidence that comes from having an expert in your corner. <a href="../pages/contact.html" class="text-accent hover:text-accent-light transition-colors">Contact us</a> to discuss your team's needs.</p>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="bg-navy-800 border border-navy-700 rounded-lg p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3">Can I request a specific template?</h3>
+          <p class="text-steel-400">Consultant subscribers can request templates via email at <a href="mailto:info@vividConsulting.INFO" class="text-accent hover:text-accent-light transition-colors">info@vividConsulting.INFO</a>. We review requests monthly and prioritize templates that serve a broad audience. New templates are added every month, drawn from real-world consulting engagements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950 bg-grid">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">You've Done the Work a Hundred Times. Stop Doing It Again.</h2>
+      <p class="mt-4 text-lg text-steel-400 max-w-2xl mx-auto">Create a free account. Download a few templates. See the quality for yourself. When you're ready to stop spending hours on deliverables you could review in minutes, the Consultant plan is one click away.</p>
+      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#" data-action="create-account" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+          Create Free Account
+        </a>
+        <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+          Compare Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy-950 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-7 w-auto">
+          <p class="mt-3 text-sm text-steel-500 leading-relaxed">
+            Enterprise SAP Security, GRC & Identity Management consulting based in Dallas, TX.
+          </p>
+          <p class="mt-4 text-sm text-steel-600">
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="../pages/sap-grc.html" class="hover:text-accent transition-colors">SAP GRC Consulting</a></li>
+            <li><a href="../pages/sailpoint-iiq.html" class="hover:text-accent transition-colors">SailPoint IIQ</a></li>
+            <li><a href="../pages/sap-integration.html" class="hover:text-accent transition-colors">SAP Integration</a></li>
+            <li><a href="../pages/security-consulting.html" class="hover:text-accent transition-colors">Security Consulting</a></li>
+            <li><a href="../pages/aerospace-defense.html" class="hover:text-accent transition-colors">Aerospace & Defense</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="index.html" class="hover:text-accent transition-colors">Template Library</a></li>
+            <li><a href="../blog/index.html" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="../pages/careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="../pages/help.html" class="hover:text-accent transition-colors">Ask Us Anything</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="../pages/about.html" class="hover:text-accent transition-colors">About</a></li>
+            <li><a href="../pages/contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="../pages/privacy.html" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+            <li><a href="../pages/terms.html" class="hover:text-accent transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-navy-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-steel-600">&copy; 2026 vividConsulting.INFO. All rights reserved.</p>
+        <a href="mailto:info@vividConsulting.INFO" class="text-sm text-steel-500 hover:text-accent transition-colors">info@vividConsulting.INFO</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

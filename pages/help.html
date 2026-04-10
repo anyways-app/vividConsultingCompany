@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <title>Ask Us Anything — vividConsulting.INFO</title>
+  <meta name="description" content="Got a question about SAP security, GRC, or identity management? Need extra bandwidth on a project? Tell us what's going on — we'll get back to you within one business day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b1ba; }
+    .text-gradient {
+      background: linear-gradient(135deg, #00b1ba 0%, #33c4cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,177,186,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,177,186,0.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    /* Dropdown: use padding-top on dropdown to bridge the gap */
+    .nav-dropdown { display: none; padding-top: 0; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .nav-parent .nav-dropdown { top: 100%; padding-top: 8px; }
+    .nav-parent .nav-dropdown > :first-child { margin-top: 0; }
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+    .form-input {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #00b1ba;
+      box-shadow: 0 0 0 3px rgba(0, 177, 186, 0.1);
+      background: #ffffff;
+    }
+    .form-input::placeholder { color: #94a3b8; }
+    /* Persona tab active state */
+    .persona-tab { transition: all 0.2s ease; }
+    .persona-tab.active { background: #ffffff; border-color: #00b1ba; color: #1e293b; }
+    .persona-panel { display: none; }
+    .persona-panel.active { display: block; }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="../index.html" class="flex-shrink-0">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="../index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Home</a>
+          <div class="nav-parent relative">
+            <button class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-slate-900 transition-colors flex items-center gap-1">
+              Services
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 w-72 bg-white border border-navy-700 rounded-lg shadow-xl py-2">
+              <a href="sap-grc.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP GRC Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Implementation, upgrades & compliance</span>
+              </a>
+              <a href="sailpoint-iiq.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SailPoint IIQ</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Identity governance & access management</span>
+              </a>
+              <a href="sap-integration.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP Integration Services</span>
+                <span class="block text-xs text-steel-400 mt-0.5">System integration & data migration</span>
+              </a>
+              <a href="security-consulting.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Security Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Role design, SoD & authorization architecture</span>
+              </a>
+              <a href="aerospace-defense.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Aerospace & Defense</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Cleared SAP & ICAM work for federal agencies</span>
+              </a>
+            </div>
+          </div>
+          <a href="../templates/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Template Library</a>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">About</a>
+          <a href="../blog/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Blog</a>
+          <a href="contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+          <a href="help.html" class="px-4 py-2 text-sm font-medium text-slate-900">Help</a>
+          <a href="../templates/index.html" class="ml-4 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors">
+            Subscribe
+          </a>
+        </nav>
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="lg:hidden p-2 text-steel-400 hover:text-slate-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+      <nav class="space-y-1">
+        <a href="../index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Home</a>
+        <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
+        <a href="sap-grc.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP GRC Consulting</a>
+        <a href="sailpoint-iiq.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SailPoint IIQ</a>
+        <a href="sap-integration.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP Integration Services</a>
+        <a href="security-consulting.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Security Consulting</a>
+        <a href="aerospace-defense.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Aerospace & Defense</a>
+        <div class="border-t border-navy-700 my-3"></div>
+        <a href="../templates/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Template Library</a>
+        <a href="about.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">About</a>
+        <a href="../blog/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Blog</a>
+        <a href="contact.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Contact</a>
+        <a href="help.html" class="block px-4 py-3 text-slate-900 font-medium bg-navy-700 rounded-lg">Help</a>
+        <div class="pt-3">
+          <a href="../templates/index.html" class="block text-center px-5 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors">Subscribe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative pt-32 lg:pt-44 pb-16 lg:pb-20 bg-grid overflow-hidden">
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+        Tell Us What's Going On.
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-steel-400 max-w-2xl mx-auto leading-relaxed">
+        No form fields. No dropdown menus. Just describe your situation in plain language and we'll get back to you within one business day with a clear answer or a plan.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== PERSONA SELECTOR ========== -->
+  <section class="py-16 lg:py-24 bg-navy-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Tab selector -->
+      <div class="flex flex-col sm:flex-row gap-4 mb-12">
+        <button onclick="switchPersona('enterprise')" id="tab-enterprise" class="persona-tab active flex-1 p-5 rounded-xl border border-navy-700 text-left cursor-pointer">
+          <span class="block text-lg font-bold text-slate-900 mb-1">I'm on an in-house team</span>
+          <span class="block text-sm text-steel-400">I need guidance, validation, or an expert opinion before I move forward.</span>
+        </button>
+        <button onclick="switchPersona('consultant')" id="tab-consultant" class="persona-tab flex-1 p-5 rounded-xl border border-navy-700 text-left cursor-pointer">
+          <span class="block text-lg font-bold text-slate-900 mb-1">I'm an independent consultant</span>
+          <span class="block text-sm text-steel-400">I need extra bandwidth, or I've hit something outside my core area.</span>
+        </button>
+      </div>
+
+      <!-- ===== ENTERPRISE PANEL ===== -->
+      <div id="panel-enterprise" class="persona-panel active">
+        <div class="bg-navy-800 border border-navy-700 rounded-2xl p-8 lg:p-10">
+
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900 mb-3">Ask us anything.</h2>
+            <p class="text-steel-400 leading-relaxed">
+              You understand your SAP environment. You can read the documentation. But sometimes you need someone with 15+ years of field experience to look at your specific situation and tell you whether you're on the right track — before you commit resources or present to leadership.
+            </p>
+            <p class="mt-3 text-steel-400 leading-relaxed">
+              That's what this page is for. Describe what you're working on, what you're unsure about, or what you need reviewed. There's no commitment and no sales pitch. If we can answer your question in a reply, we will. If it's something that would benefit from a conversation, we'll suggest a call.
+            </p>
+          </div>
+
+          <form action="#" method="post" class="space-y-6">
+            <input type="hidden" name="persona" value="enterprise">
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label for="ent-name" class="block text-sm font-medium text-steel-300 mb-2">Your name</label>
+                <input type="text" id="ent-name" name="name" required placeholder="e.g. Jamie Lawson"
+                  class="form-input w-full px-4 py-3 rounded-lg">
+              </div>
+              <div>
+                <label for="ent-email" class="block text-sm font-medium text-steel-300 mb-2">Work email</label>
+                <input type="email" id="ent-email" name="email" required placeholder="e.g. jlawson@company.com"
+                  class="form-input w-full px-4 py-3 rounded-lg">
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label for="ent-company" class="block text-sm font-medium text-steel-300 mb-2">Company</label>
+                <input type="text" id="ent-company" name="company" placeholder="e.g. Meridian Industries"
+                  class="form-input w-full px-4 py-3 rounded-lg">
+              </div>
+              <div>
+                <label for="ent-role" class="block text-sm font-medium text-steel-300 mb-2">Your role <span class="text-steel-500">(optional)</span></label>
+                <input type="text" id="ent-role" name="role" placeholder="SAP Security Lead"
+                  class="form-input w-full px-4 py-3 rounded-lg">
+              </div>
+            </div>
+
+            <div>
+              <label for="ent-message" class="block text-sm font-medium text-steel-300 mb-2">What's going on?</label>
+              <textarea id="ent-message" name="message" rows="7" required
+                placeholder="Describe your situation in plain language. For example:&#10;&#10;'We upgraded to S/4HANA last year but kept the old ECC security model. Now our auditors are flagging SoD conflicts that didn't exist before. We need someone to review our current ruleset and tell us what needs to change for the new authorization model — before the next audit cycle in Q3.'&#10;&#10;The more context you give us, the more useful our response will be."
+                class="form-input w-full px-4 py-3 rounded-lg resize-y min-h-[200px]"></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <button type="submit" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
+                Send It Over
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+              </button>
+              <p class="text-sm text-steel-500">We respond within one business day.</p>
+            </div>
+          </form>
+
+          <!-- What happens next -->
+          <div class="mt-10 pt-8 border-t border-navy-700">
+            <h3 class="text-sm font-semibold text-steel-400 uppercase tracking-wider mb-4">What happens next</h3>
+            <div class="grid sm:grid-cols-3 gap-6">
+              <div>
+                <div class="text-accent font-bold text-lg mb-1">1</div>
+                <p class="text-sm text-steel-400">We read your message and assess the situation.</p>
+              </div>
+              <div>
+                <div class="text-accent font-bold text-lg mb-1">2</div>
+                <p class="text-sm text-steel-400">If we can answer directly, we reply by email with our assessment.</p>
+              </div>
+              <div>
+                <div class="text-accent font-bold text-lg mb-1">3</div>
+                <p class="text-sm text-steel-400">If it's something that needs a deeper look, we suggest a 30-minute call — no charge, no obligation.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== CONSULTANT PANEL ===== -->
+      <div id="panel-consultant" class="persona-panel">
+        <div class="bg-navy-800 border border-navy-700 rounded-2xl p-8 lg:p-10">
+
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900 mb-3">Need extra bandwidth? Hit something outside your lane?</h2>
+            <p class="text-steel-400 leading-relaxed">
+              You're the expert. You don't need us to tell you how SAP security works. But sometimes you're understaffed and need another pair of hands. Sometimes a project drags you into Basis territory, or a SailPoint integration, or a GRC upgrade path you haven't seen before. You know enough to know it's solvable — you just don't have the cycles or the specific experience to do it quickly.
+            </p>
+            <p class="mt-3 text-steel-400 leading-relaxed">
+              Tell us what's going on. We can point you in the right direction, pair with you on the problem, or take a piece of it off your plate entirely. No judgment, no upsell — just one consultant helping another.
+            </p>
+          </div>
+
+          <form action="#" method="post" class="space-y-6">
+            <input type="hidden" name="persona" value="consultant">
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label for="con-name" class="block text-sm font-medium text-steel-300 mb-2">Your name</label>
+                <input type="text" id="con-name" name="name" required placeholder="e.g. Morgan Chen"
+                  class="form-input w-full px-4 py-3 rounded-lg">
+              </div>
+              <div>
+                <label for="con-email" class="block text-sm font-medium text-steel-300 mb-2">Email</label>
+                <input type="email" id="con-email" name="email" required placeholder="e.g. morgan@firmname.com"
+                  class="form-input w-full px-4 py-3 rounded-lg">
+              </div>
+            </div>
+
+            <div>
+              <label for="con-situation" class="block text-sm font-medium text-steel-300 mb-2">What are you dealing with?</label>
+              <textarea id="con-situation" name="message" rows="7" required
+                placeholder="Give us the context. For example:&#10;&#10;'I'm staffed on a GRC 12.0 implementation for an energy client, but they also need the SailPoint-to-SAP connector configured and that's not in my wheelhouse. I need someone who can handle the connector setup while I manage the GRC side. Timeline is about 8 weeks starting next month.'&#10;&#10;Or:&#10;&#10;'My team is stretched thin and a new engagement just came in — a mid-market manufacturer needs a complete security role redesign before their S/4HANA go-live. I need a senior resource who can run the role workshops and deliver the build. Probably 3 months of work.'"
+                class="form-input w-full px-4 py-3 rounded-lg resize-y min-h-[200px]"></textarea>
+            </div>
+
+            <div>
+              <label for="con-urgency" class="block text-sm font-medium text-steel-300 mb-2">How urgent is this?</label>
+              <div class="flex flex-wrap gap-3">
+                <label class="cursor-pointer">
+                  <input type="radio" name="urgency" value="exploring" class="sr-only peer">
+                  <span class="inline-block px-4 py-2 rounded-lg border border-navy-600 text-sm text-steel-400 peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">Just exploring</span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="urgency" value="this-month" class="sr-only peer" checked>
+                  <span class="inline-block px-4 py-2 rounded-lg border border-navy-600 text-sm text-steel-400 peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">Need it this month</span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="urgency" value="this-week" class="sr-only peer">
+                  <span class="inline-block px-4 py-2 rounded-lg border border-navy-600 text-sm text-steel-400 peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">This week</span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="urgency" value="asap" class="sr-only peer">
+                  <span class="inline-block px-4 py-2 rounded-lg border border-accent text-sm text-accent peer-checked:border-accent peer-checked:text-accent peer-checked:bg-accent/10 transition-colors">ASAP</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <button type="submit" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
+                Send It Over
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+              </button>
+              <p class="text-sm text-steel-500">We respond within one business day.</p>
+            </div>
+          </form>
+
+          <!-- What happens next -->
+          <div class="mt-10 pt-8 border-t border-navy-700">
+            <h3 class="text-sm font-semibold text-steel-400 uppercase tracking-wider mb-4">What happens next</h3>
+            <div class="grid sm:grid-cols-3 gap-6">
+              <div>
+                <div class="text-accent font-bold text-lg mb-1">1</div>
+                <p class="text-sm text-steel-400">We read your message and assess scope, timeline, and fit.</p>
+              </div>
+              <div>
+                <div class="text-accent font-bold text-lg mb-1">2</div>
+                <p class="text-sm text-steel-400">If it's a quick question, we answer by email. If it's a project, we propose a scope and rate.</p>
+              </div>
+              <div>
+                <div class="text-accent font-bold text-lg mb-1">3</div>
+                <p class="text-sm text-steel-400">We work alongside you — your engagement, your client, your timeline. White-label if needed.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== COMMON SCENARIOS ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900 bg-grid">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">People Reach Out for All Kinds of Reasons</h2>
+        <p class="mt-4 text-lg text-steel-400">Here are some of the situations we hear about regularly.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Enterprise scenarios -->
+        <div class="bg-navy-800 border border-navy-700 rounded-xl p-6">
+          <div class="text-xs font-semibold text-accent uppercase tracking-wider mb-4">In-House Teams</div>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"Our external auditors flagged 47 SoD conflicts in our last review and we don't have the internal expertise to remediate them before the next cycle. Can someone review the findings and build us a remediation plan?"</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"We moved to S/4HANA but kept the ECC security model. Now Fiori apps are exposing authorization gaps we never saw before. We need someone to redesign the role structure for the new UX layer."</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"We've been asked to stand up a GRC Process Control instance in parallel with Access Control. Our team knows AC but we've never done PC. Can you scope it and tell us what we're looking at?"</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"Leadership wants a business case for SailPoint IIQ to replace our manual access certification process. I need someone who's done this before to help me build the justification deck."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consultant scenarios -->
+        <div class="bg-navy-800 border border-navy-700 rounded-xl p-6">
+          <div class="text-xs font-semibold text-accent uppercase tracking-wider mb-4">Independent Consultants</div>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"I'm on a Basis/security engagement and the client just added SailPoint IIQ provisioning to the scope. I've never built SAP connectors in SailPoint — I need someone who can own that piece while I handle the rest."</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"I have a pharma client that needs a full GRC Access Control ruleset review — probably 25-30 hours of detailed analysis. Can you run the analysis and deliver a report I can present under my firm's name?"</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"Three engagements just overlapped and I need a senior SAP security resource for a 12-week role redesign at a utilities company. White-label, your work under my deliverables."</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-steel-600 mt-1 flex-shrink-0">&rarr;</span>
+              <p class="text-sm text-steel-300">"My client is migrating from ECC to S/4HANA and I need help with the security cutover plan. I know ECC authorization inside and out, but the Fiori catalog and PFCG changes in S/4 are new territory for me."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROMISE ========== -->
+  <section class="py-16 lg:py-20 bg-navy-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-lg text-steel-300 leading-relaxed">
+        We don't gatekeep answers behind a sales process. If you describe your situation and we can help with a reply, we will — for free. If it's something that needs a deeper engagement, we'll be upfront about scope, timeline, and cost. No surprises.
+      </p>
+      <p class="mt-4 text-steel-500">
+        <a href="mailto:info@vividConsulting.INFO" class="text-accent hover:text-accent-light transition-colors">info@vividConsulting.INFO</a> &middot; (469) 441-8828
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy-950 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="col-span-2 md:col-span-1">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-7 w-auto">
+          <p class="mt-3 text-sm text-steel-500 leading-relaxed">
+            Enterprise SAP Security, GRC & Identity Management consulting based in Dallas, TX.
+          </p>
+          <p class="mt-4 text-sm text-steel-600">
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="sap-grc.html" class="hover:text-accent transition-colors">SAP GRC Consulting</a></li>
+            <li><a href="sailpoint-iiq.html" class="hover:text-accent transition-colors">SailPoint IIQ</a></li>
+            <li><a href="sap-integration.html" class="hover:text-accent transition-colors">SAP Integration</a></li>
+            <li><a href="security-consulting.html" class="hover:text-accent transition-colors">Security Consulting</a></li>
+            <li><a href="aerospace-defense.html" class="hover:text-accent transition-colors">Aerospace & Defense</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="../templates/index.html" class="hover:text-accent transition-colors">Template Library</a></li>
+            <li><a href="../blog/index.html" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="help.html" class="hover:text-accent transition-colors">Ask Us Anything</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+            <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="privacy.html" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-accent transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-navy-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-steel-600">&copy; 2026 vividConsulting.INFO. All rights reserved.</p>
+        <a href="mailto:info@vividConsulting.INFO" class="text-sm text-steel-500 hover:text-accent transition-colors">info@vividConsulting.INFO</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Persona tab switching -->
+  <script>
+    function switchPersona(persona) {
+      document.querySelectorAll('.persona-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.persona-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + persona).classList.add('active');
+      document.getElementById('panel-' + persona).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

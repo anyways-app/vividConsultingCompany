@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <title>SailPoint IIQ Identity Management — vividConsulting.INFO</title>
+  <meta name="description" content="SailPoint IdentityIQ implementation, identity governance, access certification, and lifecycle management. SailPoint-to-SAP integration services from enterprise consultants.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#ffffff',
+              900: '#f8fafc',
+              800: '#f1f5f9',
+              700: '#e2e8f0',
+              600: '#cbd5e1',
+              500: '#94a3b8',
+            },
+            accent: {
+              DEFAULT: '#00b1ba',
+              light: '#33c4cc',
+              dark: '#088389',
+            },
+            steel: {
+              100: '#0f172a',
+              200: '#1e293b',
+              300: '#334155',
+              400: '#475569',
+              500: '#64748b',
+              600: '#94a3b8',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00b1ba; }
+
+    /* Gradient text utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #00b1ba 0%, #33c4cc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subtle grid background */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(0,177,186,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,177,186,0.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* Nav dropdown */
+    /* Dropdown: use padding-top on dropdown to bridge the gap */
+    .nav-dropdown { display: none; padding-top: 0; }
+    .nav-parent:hover .nav-dropdown { display: block; }
+    .nav-parent .nav-dropdown { top: 100%; padding-top: 8px; }
+    .nav-parent .nav-dropdown > :first-child { margin-top: 0; }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="bg-navy-900 text-steel-300 font-sans antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+
+        <!-- Logo -->
+        <a href="../index.html" class="flex-shrink-0">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-8 lg:h-10 w-auto">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="../index.html" class="px-4 py-2 text-sm font-medium text-slate-900 hover:text-accent transition-colors">Home</a>
+
+          <!-- Services Dropdown -->
+          <div class="nav-parent relative">
+            <button class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-slate-900 transition-colors flex items-center gap-1">
+              Services
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 w-72 bg-white border border-navy-700 rounded-lg shadow-xl py-2">
+              <a href="sap-grc.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP GRC Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Implementation, upgrades & compliance</span>
+              </a>
+              <a href="sailpoint-iiq.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SailPoint IIQ</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Identity governance & access management</span>
+              </a>
+              <a href="sap-integration.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">SAP Integration Services</span>
+                <span class="block text-xs text-steel-400 mt-0.5">System integration & data migration</span>
+              </a>
+              <a href="security-consulting.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Security Consulting</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Role design, SoD & authorization architecture</span>
+              </a>
+              <a href="aerospace-defense.html" class="block px-4 py-3 hover:bg-navy-700 transition-colors">
+                <span class="block text-sm font-medium text-slate-900">Aerospace & Defense</span>
+                <span class="block text-xs text-steel-400 mt-0.5">Cleared SAP & ICAM work for federal agencies</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="../templates/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Template Library</a>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">About</a>
+          <a href="../blog/index.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Blog</a>
+          <a href="contact.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Contact</a>
+          <a href="help.html" class="px-4 py-2 text-sm font-medium text-steel-300 hover:text-accent transition-colors">Help</a>
+
+          <a href="../templates/index.html" class="ml-4 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors">
+            Subscribe
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('open')" class="lg:hidden p-2 text-steel-400 hover:text-slate-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+      <nav class="space-y-1">
+        <a href="../index.html" class="block px-4 py-3 text-slate-900 font-medium rounded-lg bg-navy-700">Home</a>
+        <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
+        <a href="sap-grc.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP GRC Consulting</a>
+        <a href="sailpoint-iiq.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SailPoint IIQ</a>
+        <a href="sap-integration.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">SAP Integration Services</a>
+        <a href="security-consulting.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Security Consulting</a>
+        <a href="aerospace-defense.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Aerospace & Defense</a>
+        <div class="border-t border-navy-700 my-3"></div>
+        <a href="../templates/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Template Library</a>
+        <a href="about.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">About</a>
+        <a href="../blog/index.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Blog</a>
+        <a href="contact.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Contact</a>
+        <a href="help.html" class="block px-4 py-3 text-steel-300 hover:text-slate-900 hover:bg-navy-700 rounded-lg transition-colors">Help</a>
+        <div class="pt-3">
+          <a href="../templates/index.html" class="block text-center px-5 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors">Subscribe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative pt-32 lg:pt-44 pb-20 lg:pb-32 bg-grid overflow-hidden">
+    <!-- Gradient orb -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          Identity Governance Experts
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          SailPoint IIQ<br>
+          <span class="text-gradient">Identity Management</span>
+        </h1>
+
+        <p class="mt-6 text-lg lg:text-xl text-steel-400 max-w-2xl leading-relaxed">
+          Enterprise identity governance, access certification, lifecycle management, and SailPoint-to-SAP integration. We help you design, implement, and optimize SailPoint IIQ to enforce access controls, automate provisioning, and maintain compliance across your organization.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+            Schedule a Consultation
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="../templates/index.html" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+            Browse Template Library
+          </a>
+        </div>
+
+        <!-- Trust indicators -->
+        <div class="mt-16 flex flex-wrap gap-x-10 gap-y-4 text-sm text-steel-500">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            SailPoint Certified Architects
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            100+ Successful Implementations
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            SAP + SailPoint Integration Specialists
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">SailPoint IIQ Services</h2>
+        <p class="mt-4 text-lg text-steel-400">Comprehensive identity governance solutions for enterprise access management and compliance.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Implementation & Configuration -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">IIQ Implementation & Configuration</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">End-to-end SailPoint IIQ deployment including system architecture design, connector configuration, rule customization, and workflow development. From green-field implementations to major version upgrades.</p>
+        </div>
+
+        <!-- Identity Lifecycle Management -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 10H9m6 11H9m6 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Identity Lifecycle Management</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Joiner, mover, leaver (JML) processes, identity creation and maintenance workflows, automatic provisioning and de-provisioning, lifecycle policy design, and event-driven provisioning across HR and SAP systems.</p>
+        </div>
+
+        <!-- Access Certification -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Access Certification Campaigns</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Design and execution of annual and ad-hoc access certification campaigns. Role-based and entitlement-based certification templates, escalation policies, remediation workflows, and compliance audit reporting.</p>
+        </div>
+
+        <!-- Role Mining & Entitlements -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Role Mining & Entitlement Reviews</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Data-driven role discovery, separation of duties analysis, role consolidation recommendations, privilege entitlement matrixing, and business role vs. technical role alignment across SAP and enterprise systems.</p>
+        </div>
+
+        <!-- SailPoint-SAP Integration -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12M8 7a2 2 0 100-4 2 2 0 000 4zm0 0H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-2M8 7a2 2 0 012-2h2a2 2 0 012 2m0 0h6a2 2 0 012 2v6a2 2 0 01-2 2h-6v-6z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">SailPoint-to-SAP Integration</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">SAP R/3 and S/4HANA connector configuration, user and role provisioning, authorization object mapping, password synchronization, HR system integration (SuccessFactors, Workday), and change data capture.</p>
+        </div>
+
+        <!-- Provisioning Policy Design -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Provisioning Policy Design</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Automated provisioning rule design, entitlement policy customization, conflict resolution, approval routing, delegation workflows, and exception handling for complex multi-system environments.</p>
+        </div>
+
+        <!-- Compliance & Audit -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7 12a5 5 0 1110 0 5 5 0 01-10 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Compliance Reporting & Audit</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">SOX, HIPAA, and PCI DSS compliance reporting, audit trail configuration, attestation workflows, evidence collection, access review documentation, and regulatory compliance assessments.</p>
+        </div>
+
+        <!-- Ongoing Support -->
+        <div class="card-hover group bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent/40">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-accent transition-colors">Ongoing Support & Optimization</h3>
+          <p class="text-sm text-steel-400 leading-relaxed">Production support, performance tuning, connector optimization, rule refinement, quarterly business reviews, capability expansion, and staying current with SailPoint platform updates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SAP + SailPoint Integration Section ========== -->
+  <section class="py-20 lg:py-28 bg-navy-900 bg-grid">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-6">
+            Core Integration Strategy
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+            SAP + SailPoint<br>
+            Unified Identity
+          </h2>
+          <p class="mt-4 text-lg text-steel-400 leading-relaxed">
+            SailPoint IIQ acts as your enterprise identity hub, bridging human identity from HR systems with SAP security controls. We design connectors, map authorization objects, and ensure real-time provisioning across your SAP landscape.
+          </p>
+
+          <div class="mt-8 space-y-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">SAP User Provisioning</span>
+                <p class="text-sm text-steel-400">Automated creation, modification, and deletion of SAP user accounts based on HR data and role assignments.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">Authorization Object Mapping</span>
+                <p class="text-sm text-steel-400">Strategic role-to-profile mapping that aligns SailPoint roles with SAP authorization objects and transaction security.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">HR-IIQ-SAP Workflow Automation</span>
+                <p class="text-sm text-steel-400">Event-driven workflows triggered by HR changes (hire, transfer, termination) that flow identity and access through to SAP.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <span class="text-slate-900 font-medium">GRC + IIQ Compliance Bridge</span>
+                <p class="text-sm text-steel-400">Integration with SAP GRC Access Control for real-time SoD violation detection and certification workflow alignment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent rounded-2xl"></div>
+          <div class="relative bg-navy-800/50 border border-navy-700 rounded-2xl p-8">
+            <h3 class="text-xl font-bold text-slate-900 mb-6">Integration Architecture</h3>
+            <div class="space-y-4 text-sm text-steel-300">
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5 text-accent text-xs font-bold">1</div>
+                <div>
+                  <p class="font-medium text-slate-900">HR System (SuccessFactors, Workday, SAP HCM)</p>
+                  <p class="text-xs text-steel-500 mt-1">Source of truth for employee identity and organizational data</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5 text-accent text-xs font-bold">2</div>
+                <div>
+                  <p class="font-medium text-slate-900">SailPoint IIQ</p>
+                  <p class="text-xs text-steel-500 mt-1">Identity governance engine, role assignment, access certification</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5 text-accent text-xs font-bold">3</div>
+                <div>
+                  <p class="font-medium text-slate-900">SAP (R/3, S/4HANA, ECC)</p>
+                  <p class="text-xs text-steel-500 mt-1">User accounts, roles, authorization objects, transaction security</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5 text-accent text-xs font-bold">4</div>
+                <div>
+                  <p class="font-medium text-slate-900">SAP GRC Access Control</p>
+                  <p class="text-xs text-steel-500 mt-1">SoD rules, compliance frameworks, audit trail, governance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="py-20 lg:py-28 bg-navy-950 bg-grid">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Ready to Transform Your Identity Governance?</h2>
+      <p class="mt-4 text-lg text-steel-400 max-w-2xl mx-auto">Whether you need a full SailPoint IIQ implementation, SAP integration, or optimization of an existing deployment — we can help. Let's talk about your identity and access management strategy.</p>
+      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-base transition-colors shadow-lg shadow-accent/25">
+          Get in Touch
+        </a>
+        <a href="../templates/index.html" class="inline-flex items-center justify-center px-8 py-4 border border-navy-600 hover:border-steel-500 text-steel-300 hover:text-slate-900 font-semibold rounded-lg text-base transition-colors">
+          View Template Library
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy-950 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <img src="../images/vividconsulting.png" alt="vividConsulting.INFO" class="h-7 w-auto">
+          <p class="mt-3 text-sm text-steel-500 leading-relaxed">
+            Enterprise SAP Security, GRC & Identity Management consulting based in Dallas, TX.
+          </p>
+          <p class="mt-4 text-sm text-steel-600">
+            2310 N Henderson Ave, Suite B, Unit 1591<br>
+            Dallas, TX 75206<br>
+            (469) 441-8828
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="sap-grc.html" class="hover:text-accent transition-colors">SAP GRC Consulting</a></li>
+            <li><a href="sailpoint-iiq.html" class="hover:text-accent transition-colors">SailPoint IIQ</a></li>
+            <li><a href="sap-integration.html" class="hover:text-accent transition-colors">SAP Integration</a></li>
+            <li><a href="security-consulting.html" class="hover:text-accent transition-colors">Security Consulting</a></li>
+            <li><a href="aerospace-defense.html" class="hover:text-accent transition-colors">Aerospace & Defense</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="../templates/index.html" class="hover:text-accent transition-colors">Template Library</a></li>
+            <li><a href="../blog/index.html" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="careers.html" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="help.html" class="hover:text-accent transition-colors">Ask Us Anything</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-steel-400">
+            <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
+            <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="privacy.html" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-accent transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-navy-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-steel-600">&copy; 2026 vividConsulting.INFO. All rights reserved.</p>
+        <a href="mailto:info@vividConsulting.INFO" class="text-sm text-steel-500 hover:text-accent transition-colors">info@vividConsulting.INFO</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
