@@ -177,7 +177,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-80 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-full sm:w-80 z-40 bg-white border-l border-navy-700 shadow-2xl p-6 lg:hidden overflow-y-auto">
       <nav class="space-y-1">
         <a href="index.html" class="block px-4 py-3 text-slate-900 font-medium rounded-lg bg-navy-700">Home</a>
         <div class="pt-2 pb-1 px-4 text-xs font-semibold text-steel-500 uppercase tracking-wider">Services</div>
@@ -212,7 +212,7 @@
             SAP Security, <span class="text-gradient">GRC & Identity</span> Consulting
           </h1>
           <p class="mt-4 text-base lg:text-lg text-steel-400 leading-relaxed">
-            15+ years helping enterprises and consultants with SAP GRC, SailPoint IIQ, security architecture, and compliance. Tell us what you're dealing with — we'll respond within one business day.
+            20+ years helping enterprises and consultants with SAP GRC, SailPoint IIQ, security architecture, and compliance. Tell us what you're dealing with — we'll respond in a few minutes.
           </p>
 
           <!-- Trust indicators -->
@@ -253,6 +253,11 @@
 
         <!-- RIGHT: compact form -->
         <div>
+          <!-- Header -->
+          <div class="mb-5">
+            <h2 class="text-2xl font-bold text-steel-100">Not sure where to start? Just ask.</h2>
+            <p class="text-steel-400 text-sm mt-1">We typically respond in a few minutes.</p>
+          </div>
           <!-- Persona tabs -->
           <div class="flex gap-2 mb-4">
             <button onclick="switchPersona('enterprise')" id="hp-tab-enterprise" class="persona-tab active flex-1 px-3 py-2.5 rounded-lg border border-navy-700 text-left cursor-pointer">
@@ -288,12 +293,19 @@
                     placeholder="Describe your situation in plain language, e.g. 'We upgraded to S/4HANA but kept the old ECC security model. Our auditors are flagging SoD conflicts that didn't exist before. We need someone to review the ruleset before Q3.'"
                     class="form-input w-full px-3 py-2 rounded-lg text-sm resize-y"></textarea>
                 </div>
-                <div class="flex items-center justify-between gap-3">
+                <div class="mt-2">
+                  <label class="flex items-start gap-2 cursor-pointer group">
+                    <input type="checkbox" name="consent" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-accent focus:ring-accent/30 cursor-pointer">
+                    <span class="text-xs text-steel-500 leading-relaxed">I agree to receive messages from vividConsulting in response to this inquiry. View our <a href="pages/privacy.html" class="text-accent hover:text-accent-light transition-colors underline">Privacy Policy</a>.</span>
+                  </label>
+                  <p class="consent-error hidden text-xs text-red-500 mt-1 ml-6">Please opt in to continue.</p>
+                </div>
+                <div class="flex items-center justify-between gap-3 mt-3">
                   <button type="submit" class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
                     Send It Over
                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                   </button>
-                  <span class="text-xs text-steel-500">Reply within 1 business day</span>
+                  <span class="text-xs text-steel-500">We typically respond in a few minutes</span>
                 </div>
               </form>
               <p class="mt-3 text-xs text-steel-500 text-center"><a href="pages/help.html" class="text-accent hover:text-accent-light transition-colors">See more examples &amp; full form &rarr;</a></p>
@@ -344,12 +356,19 @@
                     </label>
                   </div>
                 </div>
-                <div class="flex items-center justify-between gap-3">
+                <div class="mt-2">
+                  <label class="flex items-start gap-2 cursor-pointer group">
+                    <input type="checkbox" name="consent" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-accent focus:ring-accent/30 cursor-pointer">
+                    <span class="text-xs text-steel-500 leading-relaxed">I agree to receive messages from vividConsulting in response to this inquiry. View our <a href="pages/privacy.html" class="text-accent hover:text-accent-light transition-colors underline">Privacy Policy</a>.</span>
+                  </label>
+                  <p class="consent-error hidden text-xs text-red-500 mt-1 ml-6">Please opt in to continue.</p>
+                </div>
+                <div class="flex items-center justify-between gap-3 mt-3">
                   <button type="submit" class="inline-flex items-center px-6 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-accent/25">
                     Send It Over
                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                   </button>
-                  <span class="text-xs text-steel-500">Reply within 1 business day</span>
+                  <span class="text-xs text-steel-500">We typically respond in a few minutes</span>
                 </div>
               </form>
               <p class="mt-3 text-xs text-steel-500 text-center"><a href="pages/help.html" class="text-accent hover:text-accent-light transition-colors">See more examples &amp; full form &rarr;</a></p>
@@ -526,7 +545,7 @@
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="text-center">
-          <div class="text-5xl font-extrabold text-gradient mb-3">15+</div>
+          <div class="text-5xl font-extrabold text-gradient mb-3">20+</div>
           <p class="text-slate-900 font-semibold text-lg">Years of SAP Security</p>
           <p class="text-sm text-steel-400 mt-2">Deep hands-on experience across ECC, S/4HANA, BW, CRM, SRM, and GRC platforms.</p>
         </div>
@@ -619,19 +638,236 @@
     </div>
   </footer>
 
-  <!-- Persona switcher -->
+  <!-- Chat Interface Modal -->
+  <div id="chat-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300">
+    <div id="chat-panel" class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300">
+      <!-- Chat Header -->
+      <div class="bg-navy-900 text-white px-5 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-accent flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <div>
+            <span class="font-semibold text-sm">vividConsulting</span>
+            <span class="block text-xs text-accent-light">Typically responds in a few minutes</span>
+          </div>
+        </div>
+        <button onclick="closeChat()" class="p-1 hover:bg-white/10 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div id="chat-messages" class="flex-1 overflow-y-auto px-5 py-4 space-y-4 bg-slate-50">
+        <!-- System greeting -->
+        <div class="flex gap-2">
+          <div class="w-7 h-7 rounded-full bg-accent flex-shrink-0 flex items-center justify-center mt-1">
+            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <div class="bg-white rounded-xl rounded-tl-sm px-4 py-2.5 shadow-sm max-w-[80%]">
+            <p class="text-sm text-slate-700">Thanks for reaching out! A consultant will be with you shortly. Feel free to add any details while you wait.</p>
+            <span class="text-[10px] text-steel-400 mt-1 block" id="chat-greeting-time"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="border-t border-slate-200 px-4 py-3 bg-white">
+        <form id="chat-input-form" class="flex gap-2" onsubmit="sendChatMessage(event)">
+          <input type="text" id="chat-input" placeholder="Type your message..." class="flex-1 px-4 py-2.5 rounded-full border border-slate-200 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30">
+          <button type="submit" class="w-10 h-10 rounded-full bg-accent hover:bg-accent-dark text-white flex items-center justify-center transition-colors flex-shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persona switcher + Chat logic -->
   <script>
     function switchPersona(persona) {
-      // Update tabs
       document.querySelectorAll('.persona-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.persona-panel').forEach(p => p.classList.remove('active'));
-
-      // Homepage tabs
       const hpTab = document.getElementById('hp-tab-' + persona);
       const hpPanel = document.getElementById('hp-panel-' + persona);
       if (hpTab) hpTab.classList.add('active');
       if (hpPanel) hpPanel.classList.add('active');
     }
+
+    // Chat state
+    let chatSessionId = null;
+
+    function formatTime(date) {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function addMessage(text, sender) {
+      const container = document.getElementById('chat-messages');
+      const time = formatTime(new Date());
+
+      if (sender === 'user') {
+        const div = document.createElement('div');
+        div.className = 'flex justify-end';
+        div.innerHTML = `
+          <div class="bg-accent text-white rounded-xl rounded-tr-sm px-4 py-2.5 shadow-sm max-w-[80%]">
+            <p class="text-sm">${escapeHtml(text)}</p>
+            <span class="text-[10px] text-white/70 mt-1 block text-right">${time}</span>
+          </div>`;
+        container.appendChild(div);
+      } else {
+        const div = document.createElement('div');
+        div.className = 'flex gap-2';
+        div.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-accent flex-shrink-0 flex items-center justify-center mt-1">
+            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <div class="bg-white rounded-xl rounded-tl-sm px-4 py-2.5 shadow-sm max-w-[80%]">
+            <p class="text-sm text-slate-700">${escapeHtml(text)}</p>
+            <span class="text-[10px] text-steel-400 mt-1 block">${time}</span>
+          </div>`;
+        container.appendChild(div);
+      }
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function openChat(name, email, message, persona, urgency) {
+      chatSessionId = 'sess_' + Date.now();
+      const overlay = document.getElementById('chat-overlay');
+      const panel = document.getElementById('chat-panel');
+
+      // Set greeting time
+      document.getElementById('chat-greeting-time').textContent = formatTime(new Date());
+
+      // Show overlay
+      overlay.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        overlay.classList.remove('opacity-0');
+        panel.classList.remove('translate-x-full');
+      });
+
+      // Add the user's initial message
+      addMessage(message, 'user');
+
+      // Send to backend (Twilio WhatsApp Business API placeholder)
+      sendToBackend({ name, email, message, persona, urgency, sessionId: chatSessionId });
+
+      // Focus chat input
+      setTimeout(() => document.getElementById('chat-input').focus(), 400);
+    }
+
+    function closeChat() {
+      const overlay = document.getElementById('chat-overlay');
+      const panel = document.getElementById('chat-panel');
+      panel.classList.add('translate-x-full');
+      overlay.classList.add('opacity-0');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        // Clear messages except greeting
+        const container = document.getElementById('chat-messages');
+        const messages = container.querySelectorAll(':scope > div:not(:first-child)');
+        messages.forEach(m => m.remove());
+      }, 300);
+    }
+
+    // Close on overlay click (outside panel)
+    document.getElementById('chat-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeChat();
+    });
+
+    function sendChatMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      addMessage(text, 'user');
+      input.value = '';
+      sendToBackend({ message: text, sessionId: chatSessionId });
+    }
+
+    // Placeholder: replace with actual Twilio WhatsApp Business API endpoint
+    async function sendToBackend(data) {
+      /*
+       * TODO: Connect to Twilio WhatsApp Business API
+       *
+       * This function should POST to your backend, which then:
+       * 1. Forwards the message to your WhatsApp number via Twilio
+       * 2. Returns a session ID for continued conversation
+       * 3. Uses webhooks to receive replies and push them to the chat UI
+       *
+       * Example endpoint: POST /api/chat
+       * Body: { name, email, message, persona, urgency, sessionId }
+       *
+       * For now, this logs to console and shows a confirmation.
+       */
+      console.log('[vividChat] Message sent:', data);
+
+      // Simulated auto-reply (remove when backend is live)
+      if (data.name) {
+        setTimeout(() => {
+          addMessage("We've received your message and a consultant will respond shortly. You'll also get a confirmation at " + data.email + ".", 'consultant');
+        }, 1500);
+      }
+    }
+
+    // Consent validation helper
+    function validateConsent(form) {
+      const checkbox = form.querySelector('[name="consent"]');
+      const errorMsg = form.querySelector('.consent-error');
+      if (!checkbox.checked) {
+        errorMsg.classList.remove('hidden');
+        checkbox.closest('label').classList.add('ring-1', 'ring-red-300', 'rounded', 'p-1', '-m-1');
+        // Clear error when they check it
+        checkbox.addEventListener('change', function handler() {
+          errorMsg.classList.add('hidden');
+          checkbox.closest('label').classList.remove('ring-1', 'ring-red-300', 'rounded', 'p-1', '-m-1');
+          checkbox.removeEventListener('change', handler);
+        });
+        return false;
+      }
+      return true;
+    }
+
+    // Intercept form submissions to open chat
+    document.addEventListener('DOMContentLoaded', function() {
+      const entForm = document.querySelector('#hp-panel-enterprise form');
+      const conForm = document.querySelector('#hp-panel-consultant form');
+
+      if (entForm) {
+        entForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (!validateConsent(this)) return;
+          const name = this.querySelector('[name="name"]').value.trim();
+          const email = this.querySelector('[name="email"]').value.trim();
+          const message = this.querySelector('[name="message"]').value.trim();
+          if (name && email && message) {
+            openChat(name, email, message, 'enterprise', null);
+            this.reset();
+          }
+        });
+      }
+
+      if (conForm) {
+        conForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (!validateConsent(this)) return;
+          const name = this.querySelector('[name="name"]').value.trim();
+          const email = this.querySelector('[name="email"]').value.trim();
+          const message = this.querySelector('[name="message"]').value.trim();
+          const urgencyEl = this.querySelector('[name="hp-urgency"]:checked');
+          const urgency = urgencyEl ? urgencyEl.value : 'flexible';
+          if (name && email && message) {
+            openChat(name, email, message, 'consultant', urgency);
+            this.reset();
+          }
+        });
+      }
+    });
   </script>
 
 </body>
